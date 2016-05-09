@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerHand : MonoBehaviour {
     int playerID;
+    public Transform hand;
     public GameObject currentItem;
     public Vector2 force;
 	void Start () {
@@ -29,7 +30,6 @@ public class PlayerHand : MonoBehaviour {
     {
         if (!currentItem && (XInput.instance.getButton(playerID, 'A')==XInputDotNetPure.ButtonState.Pressed || Input.GetKey(KeyCode.A)))
         {
-            Debug.Log("search");
             if (col.GetComponent<Item>())
             {
                 currentItem = col.gameObject;
@@ -42,7 +42,7 @@ public class PlayerHand : MonoBehaviour {
     {
         if (currentItem == null)
             return;
-        
+        currentItem.GetComponent<Rigidbody>().isKinematic = false;
         currentItem.GetComponent<Item>().Throw(force);
 
 
@@ -57,10 +57,10 @@ public class PlayerHand : MonoBehaviour {
 
     void takeItem()
     {
-        currentItem.transform.parent = transform;
-        currentItem.transform.position = transform.position+transform.up;
+        currentItem.transform.parent = hand;
+        currentItem.transform.position = hand.position;
         currentItem.transform.rotation = transform.rotation;
-        currentItem.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        currentItem.GetComponent<Rigidbody>().isKinematic =true;
     }
 
     IEnumerator reload(float t)
