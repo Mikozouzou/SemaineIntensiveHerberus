@@ -4,37 +4,55 @@ using System.Collections;
 public class PlayerHand : MonoBehaviour {
     int playerID;
     public Transform hand;
-    public GameObject currentItem;
-    public Vector2 force;
+    Transform trophy;
+    GameObject currentItem;
+    public Vector2 throwForce;
+    bool seekItem = false;
+
 	void Start () {
         playerID = GetComponent<Movement>().playerID;
+        trophy = GameObject.FindGameObjectWithTag("Trophy").transform;
     }
 	
 	void Update ()
     {
+        if (!currentItem && (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed || Input.GetKey(KeyCode.A)))
+        {
+            checkTrophy();
+        }
+        else
+        {
+            seekItem = false;
+        }
+
         if (currentItem && XInput.instance.getTriggerRight(playerID) > 0.8f || Input.GetKeyDown(KeyCode.E))
         {
             throwItem();
         }
-
-        if ((XInput.instance.getTriggerRight(playerID) >0.8f ||(playerID == 1 && Input.GetKeyDown(KeyCode.O))) && currentItem)
-        {
-            if (currentItem)
-            {
-
-            }
-        }
+        
     }
 
     void OnTriggerStay(Collider col)
     {
-        if (!currentItem && (XInput.instance.getButton(playerID, 'A')==XInputDotNetPure.ButtonState.Pressed || Input.GetKey(KeyCode.A)))
+        if (seekItem && col.GetComponent<Item>())
         {
-            if (col.GetComponent<Item>())
-            {
-                currentItem = col.gameObject;
-                takeItem();
-            }
+            seekItem = false;
+            currentItem = col.gameObject;
+            takeItem();
+            
+        }
+    }
+
+    void checkTrophy()
+    {
+        if (Vector3.Distance(trophy.position,transform.position) <= 2.5f && trophy.parent == null)
+        {
+            currentItem = trophy.gameObject;
+            takeItem();
+        }
+        else
+        {
+            seekItem = true;
         }
     }
 
@@ -43,12 +61,8 @@ public class PlayerHand : MonoBehaviour {
         if (currentItem == null)
             return;
         currentItem.GetComponent<Rigidbody>().isKinematic = false;
-        currentItem.GetComponent<Item>().Throw(force);
-
-
-        // Throw with rigidbody
-        //currentItem.GetComponent<Rigidbody>().AddForce((transform.forward * force.x) +(transform.up* force.y));
-
+        currentItem.GetComponent<Item>().Throw(throwForce);
+        
         currentItem.transform.parent = null;
         currentItem = null;
     }

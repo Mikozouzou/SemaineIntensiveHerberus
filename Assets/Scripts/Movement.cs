@@ -47,14 +47,14 @@ public class Movement : MonoBehaviour {
             
             if (aimX > 0.2f || aimX < -0.2f || aimY > 0.2f || aimY < -0.2f)
             {
-                Vector3 look = new Vector3(aimX + transform.position.x, 1, aimY + transform.position.z);
+                Vector3 look = new Vector3(aimX + transform.position.x, transform.position.y, aimY + transform.position.z);
                 transform.LookAt(look);
             }
             
         }
         else
         {
-            Vector3 look = new Vector3(stickX + transform.position.x, 1, stickY + transform.position.z);
+            Vector3 look = new Vector3(stickX + transform.position.x, transform.position.y, stickY + transform.position.z);
             transform.LookAt(look);
         }
 
