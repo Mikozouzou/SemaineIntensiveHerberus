@@ -39,7 +39,6 @@ public class PlayerHand : MonoBehaviour {
             seekItem = false;
             currentItem = col.gameObject;
             takeItem();
-            
         }
     }
 
@@ -50,6 +49,7 @@ public class PlayerHand : MonoBehaviour {
             currentItem = trophy.gameObject;
             takeItem();
         }
+
         else
         {
             seekItem = true;
@@ -72,7 +72,7 @@ public class PlayerHand : MonoBehaviour {
     void takeItem()
     {
         currentItem.transform.parent = hand;
-        currentItem.transform.position = hand.position;
+		currentItem.transform.position = hand.position;
         currentItem.transform.rotation = transform.rotation;
         currentItem.GetComponent<Rigidbody>().isKinematic =true;
     }
