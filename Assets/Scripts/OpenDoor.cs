@@ -16,7 +16,7 @@ public class OpenDoor : MonoBehaviour
 	void OnTriggerStay (Collider other)
 	{
 		// Normal Doors
-		if (other.GetComponent<Collider>().gameObject.tag == "Levier")
+		if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
 		{
 			if (Input.GetKey(KeyCode.Space))
 			{
@@ -35,7 +35,7 @@ public class OpenDoor : MonoBehaviour
 		}
 
 		// Main doors
-		if (other.GetComponent<Collider>().gameObject.tag == "MainDoorLevier")
+		if (other.GetComponent<Collider>().gameObject.tag == "LeverMainDoor")
 		{
 			if (Input.GetKey(KeyCode.Space))
 			{
