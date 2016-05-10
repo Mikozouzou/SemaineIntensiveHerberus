@@ -1,28 +1,27 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Stun : MonoBehaviour {
+public abstract class Stun : MonoBehaviour {
 
     Rigidbody rigid;
-    NavMeshAgent agent;
-    bool isStun = false;
-    void Start()
+    
+    public bool isStun = false;
+
+    protected virtual void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
+        
     }
 
-    
-    
-    public void startStun(float t)
+
+
+    public virtual void startStun(float t)
     {
         if (!isStun)
         {
             isStun = true;
             if (rigid)
                 rigid.isKinematic = true;
-            if (agent)
-                agent.Stop();
             StartCoroutine(delay(t));
         }
     }
@@ -33,12 +32,10 @@ public class Stun : MonoBehaviour {
         quitStun();
     }
 
-    void quitStun()
+    protected virtual void quitStun()
     {
         if (rigid)
             rigid.isKinematic = false;
-        if (agent)
-            agent.Resume();
         isStun = false;
     }
 

@@ -23,31 +23,6 @@ public class XInput : MonoBehaviour
         vibePlayer[1] = 0;
     }
     
-    void Update()
-    {
-        // Find a PlayerIndex, for a single player game
-        // Will find the first controller that is connected ans use it
-        if (!playerIndexSet || !prevState.IsConnected)
-        {
-            for (int i = 0; i < 4; ++i)
-            {
-                PlayerIndex testPlayerIndex = (PlayerIndex)i;
-                GamePadState testState = GamePad.GetState(testPlayerIndex);
-                if (testState.IsConnected)
-                {
-                    playerIndex = testPlayerIndex;
-                    playerIndexSet = true;
-                }
-            }
-        }
-        prevState = state;
-        state = GamePad.GetState(playerIndex);
-        // Set vibration according to triggers
-        //GamePad.SetVibration(playerIndex, vibe.x, vibe.y);
-
-        // Make the current object turn
-        transform.localRotation *= Quaternion.Euler(0.0f, state.ThumbSticks.Left.X * 25.0f * Time.deltaTime, 0.0f);
-    }
 
     public void useVibe(int id, float time, float force1, float force2)
     {

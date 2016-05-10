@@ -17,7 +17,10 @@ public class Movement : MonoBehaviour {
 	
 
 	void Update () {
-        
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            GetComponent<PlayerStun>().startStun(1);
+        }
 
         float stickX = XInput.instance.getLeftXStick(playerID);
         float stickY = XInput.instance.getLeftYStick(playerID);

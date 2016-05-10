@@ -5,7 +5,7 @@ public class PlayerHand : MonoBehaviour {
     int playerID;
     public Transform hand;
     Transform trophy;
-    GameObject currentItem;
+    public GameObject currentItem;
     public float throwForce;
     bool seekItem = false;
 
@@ -66,15 +66,14 @@ public class PlayerHand : MonoBehaviour {
         currentItem.transform.parent = null;
         currentItem = null;
     }
-
-
-
+    
     void takeItem()
     {
         currentItem.transform.parent = hand;
         currentItem.transform.position = hand.position;
         currentItem.transform.rotation = transform.rotation;
         currentItem.GetComponent<Rigidbody>().isKinematic =true;
+        currentItem.GetComponent<Item>().Stop();
     }
 
     IEnumerator reload(float t)
