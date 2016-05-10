@@ -51,10 +51,10 @@ public class Item : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag == "Enemy" && !rigid.isKinematic)
+        if (col.collider.tag == "Enemy" &&isFlying)
         {
             rigid.velocity = Vector3.zero;
-            col.collider.GetComponent<Stun>().startStun(stunTime);
+            col.collider.GetComponentInParent<Stun>().startStun(stunTime);
         }
         else if (col.collider.tag == "Ground")
         {
