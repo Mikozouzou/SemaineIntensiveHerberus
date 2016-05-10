@@ -6,7 +6,7 @@ public class PlayerHand : MonoBehaviour {
     public Transform hand;
     Transform trophy;
     GameObject currentItem;
-    public Vector2 throwForce;
+    public float throwForce;
     bool seekItem = false;
 
 	void Start () {
