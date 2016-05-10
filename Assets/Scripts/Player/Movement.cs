@@ -4,14 +4,17 @@ using System.Collections;
 public class Movement : MonoBehaviour {
     public int playerID;
     public float speed;
+	[HideInInspector]
+	public float originalSpeed;
     public int rotateSpeed;
     public Vector3 direction;
     public float aimX;
     public float aimY;
 
     // Use this for initialization
-    void Start () {
-	
+    void Start () 
+	{
+		originalSpeed = speed;
 	}
 	
 	
@@ -40,6 +43,7 @@ public class Movement : MonoBehaviour {
         {
             stickX = 1;
         }
+
         direction.x = stickX;
         direction.z = stickY;
         
