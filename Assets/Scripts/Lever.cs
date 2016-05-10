@@ -8,9 +8,21 @@ public class Lever : MonoBehaviour
 	[HideInInspector]
 	public bool isIncreasing;
 	bool isOpened;
+	public bool coroutineIsRunning;
 
 	public IEnumerator DoorState()
 	{
+		if (coroutineIsRunning == false)
+		{
+			coroutineIsRunning = true;
+		}
+
+		else 
+		{
+			coroutineIsRunning = false;
+			yield break;
+		}
+
 		int _timer = 0;
 		int _timerMax = 10; // Just made so that we have a timer
 
@@ -21,6 +33,7 @@ public class Lever : MonoBehaviour
 
 			if (isIncreasing == false)
 			{
+				coroutineIsRunning = false;
 				yield break;
 			}
 		}
@@ -47,6 +60,8 @@ public class Lever : MonoBehaviour
 				}
 			}
 		}
+
+		coroutineIsRunning = false;
 	}
 
 	// If open --> close	;	If close --> open

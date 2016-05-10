@@ -22,16 +22,25 @@ public class OpenDoor : MonoBehaviour
 			{
 				if (canTriggerCoroutine == true)
 				{
-					other.GetComponent<Lever>().isIncreasing = true;
-					other.GetComponent<Lever>().StartCoroutine(other.GetComponent<Lever>().DoorState());
-					canTriggerCoroutine = false;
+					Lever _Lever = other.GetComponent<Lever>();
+
+					if (_Lever.coroutineIsRunning == false)
+					{
+						_Lever.isIncreasing = true;
+						_Lever.StartCoroutine(other.GetComponent<Lever>().DoorState());
+						canTriggerCoroutine = false;
+					}
 				}
 			}
 				
 			else
 			{
-				ResetVariables(other);
+				if (canTriggerCoroutine == false)
+				{
+					ResetVariables(other);
+				}
 			}
+
 		}
 
 		// Main doors
