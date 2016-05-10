@@ -3,15 +3,19 @@ using System.Collections;
 
 public class OpenDoor : MonoBehaviour 
 {
-	public bool canTriggerCoroutine;
+	public GameObject mainDoor;
+	MainDoor refToMainDoorScript;
+	bool canTriggerCoroutine;
 
 	void Start()
 	{
 		canTriggerCoroutine = true;
+		refToMainDoorScript = mainDoor.GetComponent<MainDoor>();
 	}
 
 	void OnTriggerStay (Collider other)
 	{
+		// Normal Doors
 		if (other.GetComponent<Collider>().gameObject.tag == "Levier")
 		{
 			if (Input.GetKey(KeyCode.Space))
@@ -27,6 +31,22 @@ public class OpenDoor : MonoBehaviour
 			else
 			{
 				ResetVariables(other);
+			}
+		}
+
+		// Main doors
+		if (other.GetComponent<Collider>().gameObject.tag == "MainDoorLevier")
+		{
+			if (Input.GetKey(KeyCode.Space))
+			{
+				MainDoorTrigger _MainTrigger = other.GetComponent<MainDoorTrigger>();
+
+				if (_MainTrigger.isActivated == false)
+				{
+					_MainTrigger.isActivated = true;
+					refToMainDoorScript.DoorCount++;
+					refToMainDoorScript.CheckDoorStatus();
+				}
 			}
 		}
 	}

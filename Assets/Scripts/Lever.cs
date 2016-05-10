@@ -3,35 +3,11 @@ using System.Collections;
 
 public class Lever : MonoBehaviour 
 {
-	public GameObject doorReference;
+	public GameObject[] doorReference;
 	public float openingTimer;
-	bool canIncreaseTimer;
+	[HideInInspector]
 	public bool isIncreasing;
-	public bool isOpened;
-
-	Vector3 closedPosition;
-	Vector3 openedPosition;
-
-	void Start()
-	{
-		// Set the positions of the doors
-		closedPosition = doorReference.transform.position;
-		openedPosition = doorReference.transform.position + new Vector3(0, 50, 0);
-	}
-
-	void OnTriggerEnter (Collider other)
-	{
-		
-		if (other.GetComponent<Collider>().gameObject.tag == "Player")
-		{
-			canIncreaseTimer = true;
-		}
-	}
-
-	void OnTriggerExit ()
-	{
-		canIncreaseTimer = false;
-	}
+	bool isOpened;
 
 	public IEnumerator DoorState()
 	{
@@ -48,27 +24,27 @@ public class Lever : MonoBehaviour
 				yield break;
 			}
 		}
-
+			
 		if (_timer >= _timerMax)
 		{
-			if (isIncreasing == true) // if increasing is still true, then, we open/close the door
+			if (isIncreasing == true) // If still true, we change all doors' state
 			{
-				if (isOpened == true)
+				for (int i = 0 ; i < doorReference.Length ; i++)
 				{
-					ChangeDoorState(true);
-					//yield break;
-				}
+					Door _door = doorReference[i].GetComponent<Door>();
 
-				else
-				{
-					ChangeDoorState(false);
-					//yield break;
-				}
-			}
+					if (_door.isOpened == false)
+					{
+						_door.isOpened = true;
+					}
 
-			else 
-			{
-				yield break;
+					else 
+					{
+						_door.isOpened = false;
+					}
+
+					_door.ChangePosition();
+				}
 			}
 		}
 	}
@@ -80,14 +56,20 @@ public class Lever : MonoBehaviour
 
 		if (isOpened == true)
 		{
-			doorReference.transform.position = closedPosition;
-			isOpened = false;
+			for (int i = 0 ; i < doorReference.Length ; i++)
+			{
+				doorReference[i].transform.position = doorReference[i].GetComponent<Door>().closedPosition;
+				isOpened = false;
+			}
 		}
 
 		else
 		{
-			doorReference.transform.position = openedPosition;
-			isOpened = true;
+			for (int i = 0 ; i < doorReference.Length ; i++)
+			{
+				doorReference[i].transform.position = doorReference[i].GetComponent<Door>().openedPosition;
+				isOpened = true;
+			}
 		}
 	}
 }
