@@ -13,12 +13,19 @@ public class Movement : MonoBehaviour {
     PlayerHand hand;
     // Use this for initialization
 <<<<<<< HEAD
+<<<<<<< HEAD
     void Start () 
 	{
 		originalSpeed = speed;
 =======
     void Start () {
         hand = GetComponent<PlayerHand>();
+>>>>>>> refs/remotes/origin/master
+=======
+
+    void Start () {
+        hand = GetComponent<PlayerHand>();
+		originalSpeed = speed;
 >>>>>>> refs/remotes/origin/master
 	}
 	

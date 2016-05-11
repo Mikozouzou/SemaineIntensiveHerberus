@@ -44,7 +44,7 @@ public class XInput : MonoBehaviour
     public ButtonState getButton(int id, char bt)
     {
         id--;
-
+        
         switch (bt)
         {
             case 'A':
