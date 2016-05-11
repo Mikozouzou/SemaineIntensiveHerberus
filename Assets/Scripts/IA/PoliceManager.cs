@@ -21,7 +21,7 @@ public class PoliceManager : MonoBehaviour {
         if (squad.Contains(col.transform.parent.gameObject) &&col.gameObject.GetComponentInChildren<Item>() && col.gameObject.GetComponentInChildren<Item>().gameObject.tag == "Trophy")
         {
             // Players Loose
-            Debug.Log("PoliceWin");
+            Debug.Log("Police Win");
         }
     }
 }

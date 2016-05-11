@@ -12,14 +12,10 @@ public class Movement : MonoBehaviour {
     public float aimY;
     PlayerHand hand;
     // Use this for initialization
-<<<<<<< HEAD
+
     void Start () {
         hand = GetComponent<PlayerHand>();
-=======
-    void Start () 
-	{
 		originalSpeed = speed;
->>>>>>> refs/remotes/origin/Keumar_WIP_4
 	}
 	
 	
