@@ -10,8 +10,7 @@ public class OpenMainDoor : MonoBehaviour
 	{
 		refToMainDoorScript = refMainDoor.GetComponent<MainDoor>();
 	}
-
-
+		
 	void OnTriggerStay(Collider other)
 	{
 		if (other.GetComponent<Collider>().gameObject.tag == "LeverMainDoor")
