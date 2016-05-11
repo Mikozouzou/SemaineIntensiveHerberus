@@ -22,6 +22,7 @@ public class PlayerHand : MonoBehaviour {
     {
         if (currentItem&&!currentItem.GetComponentInParent<PlayerStun>())
         {
+            poids = 1;
             currentItem = null;
             canThrow = false;
             StartCoroutine(reloadTake(0.5f));
