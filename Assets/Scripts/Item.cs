@@ -11,11 +11,12 @@ public class Item : MonoBehaviour {
     public float stunTime = 1;
     public int CompteurPasse = 0;
     public float poids = 1;
+
 	void Start () {
         if (poids == 0)
             poids = 1;
         rigid = GetComponent<Rigidbody>();
-	}
+    }
 
     void Update()
     {
@@ -36,7 +37,8 @@ public class Item : MonoBehaviour {
         }
         if (gameObject.name == "MoneyBag")
         {
-            transform.GetChild(0).gameObject.SetActive(true);
+            //transform.GetChild(0).gameObject.SetActive(true);
+            transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         }
         else
         {
@@ -73,9 +75,10 @@ public class Item : MonoBehaviour {
 
     public void Stop()
     {
-        if (gameObject.name == "MoneyBag")
+        if (gameObject.name == "MoneyBag" && isFlying)
         {
-            transform.GetChild(0).gameObject.SetActive(false);
+            transform.GetChild(0).GetComponent<ParticleSystem>().Stop();
+            transform.GetChild(1).GetComponent<ParticleSystem>().Play();
         }
         isFlying = false;
         velocity = Vector3.zero;
