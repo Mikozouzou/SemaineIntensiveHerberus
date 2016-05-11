@@ -8,8 +8,11 @@ public class PlayerHand : MonoBehaviour {
     public GameObject currentItem;
     public float throwForce;
     bool seekItem = false;
+    [HideInInspector]
+    public float poids;
 
 	void Start () {
+        poids = 1;
         playerID = GetComponent<Movement>().playerID;
         trophy = GameObject.FindGameObjectWithTag("Trophy").transform;
     }
@@ -34,7 +37,7 @@ public class PlayerHand : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-        if (seekItem && col.GetComponent<Item>())
+        if (seekItem && col.GetComponent<Item>() && col.transform.parent ==null)
         {
             seekItem = false;
             currentItem = col.gameObject;
@@ -62,7 +65,7 @@ public class PlayerHand : MonoBehaviour {
             return;
         currentItem.GetComponent<Rigidbody>().isKinematic = false;
         currentItem.GetComponent<Item>().Throw(throwForce);
-        
+        poids = 1;
         currentItem.transform.parent = null;
         currentItem = null;
     }
@@ -74,6 +77,7 @@ public class PlayerHand : MonoBehaviour {
         currentItem.transform.rotation = transform.rotation;
         currentItem.GetComponent<Rigidbody>().isKinematic =true;
         currentItem.GetComponent<Item>().Stop();
+        poids = currentItem.GetComponent<Item>().poids;
     }
 
     IEnumerator reload(float t)

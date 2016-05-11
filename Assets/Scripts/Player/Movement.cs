@@ -8,10 +8,10 @@ public class Movement : MonoBehaviour {
     public Vector3 direction;
     public float aimX;
     public float aimY;
-
+    PlayerHand hand;
     // Use this for initialization
     void Start () {
-	
+        hand = GetComponent<PlayerHand>();
 	}
 	
 	
@@ -72,6 +72,6 @@ public class Movement : MonoBehaviour {
     void move()
     {        
         direction = direction.normalized;
-        transform.position = transform.position + direction * speed * Time.deltaTime;
+        transform.position = transform.position + direction * (speed / hand.poids) * Time.deltaTime;
     }
 }
