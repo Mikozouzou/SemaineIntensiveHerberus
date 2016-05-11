@@ -13,6 +13,7 @@ public class XInput : MonoBehaviour
     int[] vibePlayer;
     void Awake()
     {
+       
         instance = this;
         buttondown = new bool[2];
         buttondown[0] = false;
