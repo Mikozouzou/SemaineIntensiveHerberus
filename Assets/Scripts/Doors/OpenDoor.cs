@@ -4,7 +4,7 @@ using System.Collections;
 public class OpenDoor : MonoBehaviour 
 {
     int playerID;
-	public GameObject mainDoor;
+	GameObject mainDoor;
 	//MainDoor refToMainDoorScript;
 	bool canTriggerCoroutine;
 
@@ -12,6 +12,7 @@ public class OpenDoor : MonoBehaviour
 	{
         playerID = GetComponent<Movement>().playerID;
         canTriggerCoroutine = true;
+        mainDoor = GameObject.Find("Main_Door");
 		//refToMainDoorScript = mainDoor.GetComponent<MainDoor>();
 	}
 
