@@ -23,7 +23,7 @@ public abstract class Enemy : MonoBehaviour {
     {
         if (col.collider.tag == "Player")
         {
-            GameObject go = col.collider.GetComponent<PlayerHand>().currentItem;
+            GameObject go = col.collider.GetComponentInParent<PlayerHand>().currentItem;
             if (go && go.tag == targetTag)
             {
                 // Player lost
@@ -32,7 +32,7 @@ public abstract class Enemy : MonoBehaviour {
             else
             {
                 // player stun
-                col.collider.GetComponent<PlayerStun>().startStun(stunTime);
+                col.collider.GetComponentInParent<PlayerStun>().startStun(stunTime);
                 personnalBehavior();
             }
         }
