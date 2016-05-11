@@ -14,7 +14,7 @@ public class EnemyCatcher : Enemy {
 
     protected override void personnalBehavior()
     {
-        if (currentTarget.GetComponent<Stun>()&& currentTarget.GetComponent<Stun>().isStun)
+        if (currentTarget.GetComponentInParent<Stun>()&& currentTarget.GetComponentInParent<Stun>().isStun)
         {
             currentTarget = trophy;
         }
