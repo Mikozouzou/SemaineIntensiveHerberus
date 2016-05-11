@@ -4,7 +4,6 @@ using System.Collections;
 public class EnemyCatcher : Enemy {
 
     GameObject[] players;
-    Transform currentTarget;
     protected override void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -14,7 +13,7 @@ public class EnemyCatcher : Enemy {
 
     protected override void personnalBehavior()
     {
-        if (currentTarget.GetComponent<Stun>()&& currentTarget.GetComponent<Stun>().isStun)
+        if (currentTarget.GetComponentInParent<Stun>()&& currentTarget.GetComponentInParent<Stun>().isStun)
         {
             currentTarget = trophy;
         }

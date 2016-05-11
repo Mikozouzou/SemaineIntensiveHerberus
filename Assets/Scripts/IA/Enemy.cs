@@ -2,22 +2,40 @@
 using System.Collections;
 
 public abstract class Enemy : MonoBehaviour {
+    protected Transform policeStation;
+    public Transform hand;
+    protected GameObject currentItem;
     protected string targetTag = "Trophy";
     protected Transform trophy;
+    protected Transform currentTarget;
     public float stunTime = 1;
     protected NavMeshAgent agent;
-
+    public float speedTime, speedMulti;
 	protected virtual void Start () {
+        currentItem = null;
+        policeStation = GameObject.Find("PoliceStation").transform;
         trophy = GameObject.FindGameObjectWithTag(targetTag).transform;
         agent = GetComponent<NavMeshAgent>();
-        InvokeRepeating("personnalBehavior",0.5f,0.1f);
+        InvokeRepeating("personnalBehavior",0.5f,0.4f);
 	}
 	
 	//void Update () {
- //       agent.SetDestination(target.position);
+    //  agent.SetDestination(target.position);
 	//}
 
-    protected abstract void personnalBehavior();
+    protected virtual void personnalBehavior()
+    {
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        if (currentTarget)
+            agent.SetDestination(currentTarget.position);
+    }
+
+    protected virtual void playerHit(GameObject playerHit)
+    {
+        StartCoroutine(speedBuff());
+        personnalBehavior();
+        playerHit.GetComponentInParent<PlayerStun>().startStun(stunTime);
+    }
 
     void OnCollisionEnter(Collision col)
     {
@@ -26,19 +44,38 @@ public abstract class Enemy : MonoBehaviour {
             GameObject go = col.collider.GetComponentInParent<PlayerHand>().currentItem;
             if (go && go.tag == targetTag)
             {
-                // Player lost
-                Debug.Log("Lost");
+                currentItem = go;
+                go = null;
+                // Take Trophy & stun
+                takeTrophy();
             }
-            else
-            {
-                // player stun
-                col.collider.GetComponentInParent<PlayerStun>().startStun(stunTime);
-                personnalBehavior();
-            }
+            playerHit(col.gameObject);
         }
         else if (col.collider.tag == targetTag)
         {
-            // player lost
+            // Take Trophy
+            currentItem = col.gameObject;
+            takeTrophy();
+            personnalBehavior();
+        }
+    }
+
+    IEnumerator speedBuff()
+    {
+        agent.speed *= speedMulti;
+        yield return new WaitForSeconds(speedTime);
+        agent.speed = agent.speed/speedMulti;
+    }
+
+    void takeTrophy()
+    {
+        if (trophy.parent.tag != "Police")
+        {
+            currentItem.transform.parent = hand;
+            currentItem.transform.position = hand.position;
+            currentItem.transform.rotation = transform.rotation;
+            currentItem.GetComponent<Rigidbody>().isKinematic = true;
+            currentItem.GetComponent<Item>().Stop();
         }
     }
 }
