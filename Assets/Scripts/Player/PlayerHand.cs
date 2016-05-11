@@ -67,7 +67,7 @@ public class PlayerHand : MonoBehaviour {
     {
         if (Vector3.Distance(trophy.position,transform.position) <= 2.5f && trophy.parent.tag != "Player")
         {
-            currentItem = trophy.gameObject;
+            currentItem = trophy.parent.gameObject;
             takeItem();
         }
         else

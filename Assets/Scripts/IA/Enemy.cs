@@ -55,6 +55,7 @@ public abstract class Enemy : MonoBehaviour {
         {
             // Take Trophy
             currentItem = col.gameObject;
+            Debug.Log(col.gameObject.name);
             takeTrophy();
             personnalBehavior();
         }
@@ -69,13 +70,13 @@ public abstract class Enemy : MonoBehaviour {
 
     protected virtual void takeTrophy()
     {
-        if (trophy.parent.tag != "Police")
+        if (trophy.parent.parent.tag != "Police")
         {
             currentItem.transform.parent = hand;
             currentItem.transform.position = hand.position;
             currentItem.transform.rotation = transform.rotation;
-            currentItem.GetComponent<Rigidbody>().isKinematic = true;
-            currentItem.GetComponent<Item>().Stop();
+            currentItem.GetComponentInParent<Rigidbody>().isKinematic = true;
+            currentItem.GetComponentInParent<Item>().Stop();
         }
     }
 }
