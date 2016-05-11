@@ -8,6 +8,7 @@ public class EnemyFollower : Enemy {
     protected override void personnalBehavior()
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        agent.SetDestination(trophy.position);
+        if (agent != null && trophy != null)
+            agent.SetDestination(trophy.position);
     }
 }
