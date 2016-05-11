@@ -34,6 +34,10 @@ public class Item : MonoBehaviour {
         {
             velocity = new Vector3(transform.forward.x, transform.up.y/2, transform.forward.z)*force;
         }
+        if (gameObject.name == "MoneyBag")
+        {
+            transform.GetChild(0).gameObject.SetActive(true);
+        }
         else
         {
             velocity = transform.forward * force;
@@ -69,6 +73,10 @@ public class Item : MonoBehaviour {
 
     public void Stop()
     {
+        if (gameObject.name == "MoneyBag")
+        {
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
         isFlying = false;
         velocity = Vector3.zero;
     }
