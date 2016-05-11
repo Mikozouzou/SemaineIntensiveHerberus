@@ -54,11 +54,7 @@ public class Item : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-<<<<<<< HEAD
-        if (col.collider.tag == "Enemy" &&isFlying)
-=======
         if (col.collider.tag == "Enemy" && isFlying)
->>>>>>> refs/remotes/origin/Will
         {
             rigid.velocity = Vector3.zero;
             col.collider.GetComponentInParent<Stun>().startStun(stunTime);
