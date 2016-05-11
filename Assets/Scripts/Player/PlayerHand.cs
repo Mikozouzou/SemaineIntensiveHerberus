@@ -10,8 +10,9 @@ public class PlayerHand : MonoBehaviour {
     bool seekItem = false;
     [HideInInspector]
     public float poids;
-
-	void Start () {
+    public bool canTake = true;
+    public bool canThrow = false;
+    void Start () {
         poids = 1;
         playerID = GetComponent<Movement>().playerID;
         trophy = GameObject.FindGameObjectWithTag("Trophy").transform;
@@ -23,7 +24,19 @@ public class PlayerHand : MonoBehaviour {
         {
             currentItem = null;
         }
-        if (!currentItem && (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed || Input.GetKey(KeyCode.A)))
+
+        float trigger = XInput.instance.getTriggerRight(playerID);
+
+        if (currentItem&& canThrow && trigger > 0.8f || Input.GetKey(KeyCode.A))
+        {
+            throwItem();
+        }
+
+        //if (!currentItem && (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed || Input.GetKey(KeyCode.A)))
+        //{
+        //    checkTrophy();
+        //}
+        if (!currentItem && canTake&& trigger > 0.8f || Input.GetKey(KeyCode.A))
         {
             checkTrophy();
         }
@@ -32,10 +45,7 @@ public class PlayerHand : MonoBehaviour {
             seekItem = false;
         }
 
-        if (currentItem && XInput.instance.getTriggerRight(playerID) > 0.8f || Input.GetKeyDown(KeyCode.E))
-        {
-            throwItem();
-        }
+        
         
     }
 
@@ -56,7 +66,6 @@ public class PlayerHand : MonoBehaviour {
             currentItem = trophy.gameObject;
             takeItem();
         }
-
         else
         {
             seekItem = true;
@@ -72,6 +81,8 @@ public class PlayerHand : MonoBehaviour {
             currentItem = null;
             return;
         }
+        canThrow = false;
+        StartCoroutine(reloadTake(0.5f));
         currentItem.GetComponent<Rigidbody>().isKinematic = false;
         currentItem.GetComponent<Item>().Throw(throwForce);
         poids = 1;
@@ -81,6 +92,8 @@ public class PlayerHand : MonoBehaviour {
     
     void takeItem()
     {
+        StartCoroutine(reloadThrow(0.2f));
+        canTake = false;
         currentItem.transform.parent = hand;
 		currentItem.transform.position = hand.position;
         currentItem.transform.rotation = transform.rotation;
@@ -89,8 +102,15 @@ public class PlayerHand : MonoBehaviour {
         poids = currentItem.GetComponent<Item>().poids;
     }
 
-    IEnumerator reload(float t)
+    IEnumerator reloadTake(float t)
     {
         yield return new WaitForSeconds(t);
+        canTake = true;
+    }
+
+    IEnumerator reloadThrow(float t)
+    {
+        yield return new WaitForSeconds(t);
+        canThrow = true;
     }
 }
