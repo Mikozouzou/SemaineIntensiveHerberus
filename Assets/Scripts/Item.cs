@@ -10,7 +10,10 @@ public class Item : MonoBehaviour {
     Rigidbody rigid;
     public float stunTime = 1;
     public int CompteurPasse = 0;
+    public float poids = 1;
 	void Start () {
+        if (poids == 0)
+            poids = 1;
         rigid = GetComponent<Rigidbody>();
 	}
 
@@ -51,7 +54,7 @@ public class Item : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag == "Enemy" &&isFlying)
+        if (col.collider.tag == "Enemy" && isFlying)
         {
             rigid.velocity = Vector3.zero;
             col.collider.GetComponentInParent<Stun>().startStun(stunTime);

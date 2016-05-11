@@ -23,7 +23,7 @@ public class EnemyCatcher : Enemy {
         foreach (GameObject go in players)
         {
             float dist = Vector3.Distance(go.transform.position, transform.position);
-            if (dist < bestDist && go.GetComponent<Stun>().isStun == false)
+            if (dist < bestDist && go.GetComponentInParent<Stun>().isStun == false)
             {
                 bestTarget = go.transform;
                 bestDist = dist;
