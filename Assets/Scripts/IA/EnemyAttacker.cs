@@ -19,7 +19,6 @@ public class EnemyAttacker : Enemy {
     {
         if (currentItem != null && trophy.GetComponentInParent<EnemyStun>())
         {
-            Debug.Log(trophy.parent.parent.parent.tag);
             currentTarget = policeStation;
         }
         else if (currentTarget != trophy)
