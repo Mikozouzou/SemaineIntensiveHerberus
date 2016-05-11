@@ -67,7 +67,7 @@ public abstract class Enemy : MonoBehaviour {
         agent.speed = agent.speed/speedMulti;
     }
 
-    void takeTrophy()
+    protected virtual void takeTrophy()
     {
         if (trophy.parent.tag != "Police")
         {
