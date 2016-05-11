@@ -41,10 +41,10 @@ public class PlayerHand : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-        if (seekItem && col.GetComponent<Item>() && col.transform.parent.tag != "Player")
+        if (seekItem && col.GetComponentInParent<Item>() && col.transform.parent.tag != "Player")
         {
             seekItem = false;
-            currentItem = col.gameObject;
+            currentItem = col.transform.parent.gameObject;
             takeItem();
         }
     }
