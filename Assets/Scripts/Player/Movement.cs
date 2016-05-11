@@ -4,14 +4,22 @@ using System.Collections;
 public class Movement : MonoBehaviour {
     public int playerID;
     public float speed;
+	[HideInInspector]
+	public float originalSpeed;
     public int rotateSpeed;
     public Vector3 direction;
     public float aimX;
     public float aimY;
     PlayerHand hand;
     // Use this for initialization
+<<<<<<< HEAD
     void Start () {
         hand = GetComponent<PlayerHand>();
+=======
+    void Start () 
+	{
+		originalSpeed = speed;
+>>>>>>> refs/remotes/origin/Keumar_WIP_4
 	}
 	
 	
@@ -40,6 +48,7 @@ public class Movement : MonoBehaviour {
         {
             stickX = 1;
         }
+
         direction.x = stickX;
         direction.z = stickY;
         
