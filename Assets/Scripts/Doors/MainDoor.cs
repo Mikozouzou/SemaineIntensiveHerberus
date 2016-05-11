@@ -14,8 +14,8 @@ public class MainDoor : MonoBehaviour
 
 	public void CheckDoorStatus()
 	{
-        print("1");
         DoorCount++;
+
 		if (DoorCount >= triggers.Length)
 		{
 

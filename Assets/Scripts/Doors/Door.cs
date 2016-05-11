@@ -8,25 +8,24 @@ public class Door : MonoBehaviour
 	[HideInInspector]
 	public Vector3 openedPosition;
 	public bool isOpened;
+    Animator animator;
 
 	void Start () 
 	{
-		closedPosition = transform.position;
-		openedPosition = transform.position + new Vector3(0, 50, 0);
-
-		ChangePosition();
+        animator = GetComponentInChildren<Animator>();
+		//ChangePosition();
 	}
 
 	public void ChangePosition()
 	{
 		if (isOpened == true)
 		{
-			transform.position = openedPosition;
+            animator.SetTrigger("OpenTheDoor");
 		}
 
 		else
 		{
-			transform.position = closedPosition;
-		}
+            animator.SetTrigger("CloseTheDoor");
+        }
 	}
 }
