@@ -23,6 +23,8 @@ public class PlayerHand : MonoBehaviour {
         if (currentItem&&!currentItem.GetComponentInParent<PlayerStun>())
         {
             currentItem = null;
+            canThrow = false;
+            StartCoroutine(reloadTake(0.5f));
         }
 
         float trigger = XInput.instance.getTriggerRight(playerID);
@@ -38,6 +40,7 @@ public class PlayerHand : MonoBehaviour {
         //}
         if (!currentItem && canTake&& trigger > 0.8f || Input.GetKey(KeyCode.A))
         {
+            canThrow = false;
             checkTrophy();
         }
         else
@@ -74,6 +77,7 @@ public class PlayerHand : MonoBehaviour {
 
     public void throwItem()
     {
+        
         if (currentItem == null)
             return;
         if (!currentItem.GetComponentInParent<PlayerStun>())
@@ -83,6 +87,7 @@ public class PlayerHand : MonoBehaviour {
         }
         canThrow = false;
         StartCoroutine(reloadTake(0.5f));
+
         currentItem.GetComponent<Rigidbody>().isKinematic = false;
         currentItem.GetComponent<Item>().Throw(throwForce);
         poids = 1;

@@ -48,7 +48,6 @@ public class EnemyAttacker : Enemy {
     protected override void playerHit(GameObject playerHit)
     {
         StopCoroutine("cooldown");
-        Debug.Log("LOLL/");
         getRandomTarget();
         base.playerHit(playerHit);
     }
