@@ -3,14 +3,14 @@ using System.Collections;
 
 public class OpenDoor : MonoBehaviour 
 {
-	public GameObject mainDoor;
-	MainDoor refToMainDoorScript;
+	//public GameObject mainDoor;
+	//MainDoor refToMainDoorScript;
 	bool canTriggerCoroutine;
 
 	void Start()
 	{
 		canTriggerCoroutine = true;
-		refToMainDoorScript = mainDoor.GetComponent<MainDoor>();
+		//refToMainDoorScript = mainDoor.GetComponent<MainDoor>();
 	}
 
 	void OnTriggerStay (Collider other)
@@ -41,22 +41,6 @@ public class OpenDoor : MonoBehaviour
 				}
 			}
 
-		}
-
-		// Main doors
-		if (other.GetComponent<Collider>().gameObject.tag == "LeverMainDoor")
-		{
-			if (Input.GetKey(KeyCode.Space))
-			{
-				MainDoorTrigger _MainTrigger = other.GetComponent<MainDoorTrigger>();
-
-				if (_MainTrigger.isActivated == false)
-				{
-					_MainTrigger.isActivated = true;
-					refToMainDoorScript.DoorCount++;
-					refToMainDoorScript.CheckDoorStatus();
-				}
-			}
 		}
 	}
 

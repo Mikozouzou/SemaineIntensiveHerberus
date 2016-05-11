@@ -7,7 +7,6 @@ public class Door : MonoBehaviour
 	public Vector3 closedPosition;
 	[HideInInspector]
 	public Vector3 openedPosition;
-	[HideInInspector]
 	public bool isOpened;
 
 	void Start () 
