@@ -10,11 +10,16 @@ public class Movement : MonoBehaviour {
     public Vector3 direction;
     public float aimX;
     public float aimY;
-
+    PlayerHand hand;
     // Use this for initialization
+<<<<<<< HEAD
     void Start () 
 	{
 		originalSpeed = speed;
+=======
+    void Start () {
+        hand = GetComponent<PlayerHand>();
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	
@@ -76,6 +81,6 @@ public class Movement : MonoBehaviour {
     void move()
     {        
         direction = direction.normalized;
-        transform.position = transform.position + direction * speed * Time.deltaTime;
+        transform.position = transform.position + direction * (speed / hand.poids) * Time.deltaTime;
     }
 }
