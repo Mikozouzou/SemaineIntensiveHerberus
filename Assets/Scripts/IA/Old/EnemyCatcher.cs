@@ -4,7 +4,6 @@ using System.Collections;
 public class EnemyCatcher : Enemy {
 
     GameObject[] players;
-    Transform currentTarget;
     protected override void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
