@@ -3,9 +3,8 @@ using System.Collections;
 using XInputDotNetPure;
 
 public class PlayerSpawner : MonoBehaviour {
-    int playerIndexSet = 0;
+    
     public GameObject playerPrefab;
-    PlayerIndex playerIndex;
 
     void Awake () {
         for (int i = 0; i < 4; ++i)
@@ -23,9 +22,4 @@ public class PlayerSpawner : MonoBehaviour {
         }
         
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }
