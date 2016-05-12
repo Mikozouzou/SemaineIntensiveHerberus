@@ -14,13 +14,15 @@ public class Item : MonoBehaviour {
     public float knockbackForce;
     [HideInInspector]
     public float onGroundForce = 1000;
+    GameObject impact ;
     //public AnimationCurve curve;
 
-	void Start () {
+    void Start () {
         if (poids == 0)
             poids = 1;
         rigid = GetComponent<Rigidbody>();
         GetComponentInChildren<Collider>().gameObject.layer = 9;
+        impact = (GameObject) Resources.Load("PS_ImpactProp");
     }
 
     void Update()
@@ -82,6 +84,10 @@ public class Item : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
+        //GameObject imp = (GameObject)
+        if(isFlying)
+        Instantiate(impact, col.contacts[0].point, impact.transform.rotation);
+
         if (col.collider.tag == "Enemy" && isFlying)
         {
             rigid.velocity = Vector3.zero;
