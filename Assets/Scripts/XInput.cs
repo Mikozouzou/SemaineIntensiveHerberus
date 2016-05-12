@@ -27,10 +27,19 @@ public class XInput : MonoBehaviour
 
     public void useVibe(int id, float time, float force1, float force2)
     {
+        id--;
         vibePlayer[id]++;
         StartCoroutine(vibration((PlayerIndex)(id), time,  force1,  force2));
     }
-    
+
+    IEnumerator vibration(PlayerIndex id, float time, float force1, float force2)
+    {
+        GamePad.SetVibration(id, force1, force2);
+        yield return new WaitForSeconds(time);
+        vibePlayer[(int)id]--;
+        if (vibePlayer[(int)id] == 0)
+            GamePad.SetVibration(id, 0, 0);
+    }
 
     public float getTriggerRight(int id)
     {
@@ -109,14 +118,7 @@ public class XInput : MonoBehaviour
         return GamePad.GetState((PlayerIndex)(id - 1)).ThumbSticks.Right.Y;
     }
 
-    IEnumerator vibration(PlayerIndex id, float time, float force1, float force2)
-    {
-        GamePad.SetVibration(id, force1, force2);
-        yield return new WaitForSeconds(time);
-        vibePlayer[(int)id]--;
-        if(vibePlayer[(int)id] ==0)
-        GamePad.SetVibration(id, 0, 0);
-    }
+    
 
     void OnDestroy()
     {

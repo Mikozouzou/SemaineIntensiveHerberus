@@ -11,6 +11,8 @@ public class Item : MonoBehaviour {
     public int CompteurPasse = 0;
     public float poids = 1;
     public float offsetHolding = 0;
+    public float knockbackForce;
+    [HideInInspector]
     public float onGroundForce = 1000;
     //public AnimationCurve curve;
 
@@ -84,7 +86,7 @@ public class Item : MonoBehaviour {
         {
             rigid.velocity = Vector3.zero;
             col.collider.GetComponentInParent<Stun>().startStun(stunTime);
-            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position, throwForce/2));
+            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position, knockbackForce));
         }
         else if (col.collider.tag == "Ground")
         {
