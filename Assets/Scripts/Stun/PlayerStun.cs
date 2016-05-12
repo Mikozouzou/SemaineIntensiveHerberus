@@ -6,7 +6,7 @@ public class PlayerStun : Stun {
     Movement move;
     public float invincibleTime = 1;
     public bool isInvincible=false;
-    Animation anim;
+
     protected override void Start()
     {
         move = GetComponent<Movement>();
@@ -17,6 +17,7 @@ public class PlayerStun : Stun {
     {
         if (!isStun && !isInvincible)
         {
+            XInput.instance.useVibe(GetComponent<Movement>().playerID,t,10,10);
             stopMovement();
             base.startStun(t);
         }

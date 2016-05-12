@@ -3,15 +3,15 @@ using System.Collections;
 
 public class Item : MonoBehaviour {
     public bool throwCourbe;
-    public float speed = 1;
+    public float throwForce = 40;
     Vector3 velocity;
     bool isFlying;
     Rigidbody rigid;
     public float stunTime = 1;
     public int CompteurPasse = 0;
     public float poids = 1;
-    public float bumpForce = 20;
     public float offsetHolding = 0;
+    public float onGroundForce = 1000;
     //public AnimationCurve curve;
 
 	void Start () {
@@ -27,7 +27,7 @@ public class Item : MonoBehaviour {
             if (throwCourbe)
             {
                 transform.position += velocity * Time.deltaTime;
-                velocity *= speed;
+                velocity *= throwForce;
             }
         }
     }
@@ -42,7 +42,7 @@ public class Item : MonoBehaviour {
         }
         else
         {
-            rigid.AddForce((transform.forward * force * speed));
+            rigid.AddForce((transform.forward * force * throwForce));
         }
         if (gameObject.name == "MoneyBag")
         {
@@ -83,7 +83,7 @@ public class Item : MonoBehaviour {
         {
             rigid.velocity = Vector3.zero;
             col.collider.GetComponentInParent<Stun>().startStun(stunTime);
-            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position, bumpForce));
+            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position, throwForce/2));
         }
         else if (col.collider.tag == "Ground")
         {
@@ -92,7 +92,7 @@ public class Item : MonoBehaviour {
             if (throwCourbe)
             {
                 // magic number
-                rigid.AddForce(velocity * 100);
+                rigid.AddForce(transform.forward * onGroundForce);
             }
         }
         Stop();
