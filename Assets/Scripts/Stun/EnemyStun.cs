@@ -28,14 +28,13 @@ public class EnemyStun : Stun
             anim = GetComponent<Enemy>().anim;
         anim.Play("anim_policiers_Stunned");
         agent.Stop();
-        agent.enabled = false;
+        
         scriptMovement.enabled = false;
     }
 
     void allowMovement()
     {
         scriptMovement.enabled = true;
-        agent.enabled = true;
         agent.Resume();
         anim.Play("anim_policiers_Run");
     }
@@ -51,7 +50,6 @@ public class EnemyStun : Stun
         Vector3 dir = transform.position-pos  ;
         for (int i = 0; i < bumpLenght; i++)
         {
-            
             transform.position = transform.position +(dir.normalized * force * Time.deltaTime);
             yield return 1;
         }
