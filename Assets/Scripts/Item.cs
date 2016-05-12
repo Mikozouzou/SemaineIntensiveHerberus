@@ -11,6 +11,7 @@ public class Item : MonoBehaviour {
     public int CompteurPasse = 0;
     public float poids = 1;
     public float bumpForce = 20;
+    public float offsetHolding = 0;
     //public AnimationCurve curve;
 
 	void Start () {

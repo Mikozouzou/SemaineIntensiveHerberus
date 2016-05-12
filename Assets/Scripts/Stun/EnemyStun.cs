@@ -4,12 +4,8 @@ using System.Collections;
 public class EnemyStun : Stun
 {
     NavMeshAgent agent;
-<<<<<<< HEAD
-    
-
-=======
     public float bumpLenght = 5;
->>>>>>> refs/remotes/origin/Will
+
     protected override void Start () {
         agent = GetComponent<NavMeshAgent>();
         base.Start();
@@ -42,8 +38,6 @@ public class EnemyStun : Stun
         base.quitStun();
     }
 
-<<<<<<< HEAD
-=======
     public IEnumerator bumpBack(Vector3 pos, float force =1)
     {
         GetComponent<NavMeshAgent>().Stop();
@@ -56,7 +50,4 @@ public class EnemyStun : Stun
         }
         GetComponent<NavMeshAgent>().Resume();
     }
-
-    
->>>>>>> refs/remotes/origin/Will
 }

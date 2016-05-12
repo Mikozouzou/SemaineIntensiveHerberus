@@ -74,7 +74,7 @@ public abstract class Enemy : MonoBehaviour {
         if (trophy.parent.parent.name != "PoliceHand" && canSeeObject(trophy.gameObject))
         {
             currentItem.transform.parent = hand;
-            currentItem.transform.position = hand.position;
+            currentItem.transform.position = hand.position + (transform.forward * currentItem.GetComponent<Item>().offsetHolding);
             currentItem.transform.rotation = transform.rotation;
             currentItem.GetComponentInParent<Rigidbody>().isKinematic = true;
             currentItem.GetComponentInParent<Item>().Stop();
