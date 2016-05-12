@@ -15,7 +15,7 @@ public class MainDoor : MonoBehaviour
         lights = GetComponentsInChildren<Light>();
         foreach (Light light in lights)
         {
-            light.intensity = 0;
+            //light.intensity = 0;
 
         }
 	}
