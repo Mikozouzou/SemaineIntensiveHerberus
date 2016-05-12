@@ -23,7 +23,6 @@ public class EnemyDefender : Enemy {
         agent.speed = baseSpeed;
         if (currentItem != null && hand.GetComponentInChildren<Item>())
         {
-            Debug.Log("Check");
             currentTarget = policeStation;
             agent.speed = baseSpeed * trophySpeedMulti;
         }
