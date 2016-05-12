@@ -22,7 +22,11 @@ public class EnemyAttacker : Enemy {
             StopAllCoroutines();
             currentTarget = policeStation;
         }
-        else if (currentTarget != trophy)
+        else if (currentTarget == policeStation)
+        {
+            getRandomTarget();
+        }
+        else
         {
             currentItem = null;
             if (Vector3.Distance(trophy.position, transform.position) <= viewDistance&& trophy.GetComponentInParent<Enemy>()==null)
@@ -31,6 +35,8 @@ public class EnemyAttacker : Enemy {
             }
             else
             {
+                if (currentTarget == null)
+                    currentTarget = trophy;
                 if (Vector3.Distance(transform.position, currentTarget.position) > viewDistance)
                 {
                     foreach (GameObject player in players)

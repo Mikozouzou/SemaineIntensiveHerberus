@@ -17,6 +17,7 @@ public class PlayerStun : Stun {
     {
         if (!isStun && !isInvincible)
         {
+            XInput.instance.useVibe(GetComponent<Movement>().playerID,t,10,10);
             stopMovement();
             base.startStun(t);
         }
