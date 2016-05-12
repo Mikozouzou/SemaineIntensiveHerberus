@@ -4,15 +4,14 @@ using System.Collections;
 public class Item : MonoBehaviour {
     public bool throwCourbe;
     public float speed = 1;
-    [HideInInspector]
-    public float velocityMulti= 0.98f;
     Vector3 velocity;
     bool isFlying;
     Rigidbody rigid;
     public float stunTime = 1;
     public int CompteurPasse = 0;
     public float poids = 1;
-
+    public float bumpForce = 20;
+    //public AnimationCurve curve;
 
 	void Start () {
         if (poids == 0)
@@ -24,9 +23,11 @@ public class Item : MonoBehaviour {
     {
         if (isFlying)
         {
-            transform.position += velocity * speed * Time.deltaTime;
-            if (gameObject.name == "MoneyBag")
-                velocity *= velocityMulti;
+            if (throwCourbe)
+            {
+                transform.position += velocity * Time.deltaTime;
+                velocity *= speed;
+            }
         }
     }
 
@@ -38,17 +39,31 @@ public class Item : MonoBehaviour {
         {
             velocity = new Vector3(transform.forward.x, transform.up.y/2, transform.forward.z)*force;
         }
+        else
+        {
+            rigid.AddForce((transform.forward * force * speed));
+        }
         if (gameObject.name == "MoneyBag")
         {
             //transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         }
-        else
-        {
-            velocity = transform.forward * force;
-        }
+        
     }
-    
+
+    //public void Throw(float force)
+    //{
+    //    isFlying = true;
+    //    if (throwCourbe)
+    //    {
+    //        rigid.AddForce((transform.forward+transform.up*2) * force *50);
+    //    }
+    //    else
+    //    {
+    //        rigid.AddForce((transform.forward * force * 50));
+    //    }
+      
+    //}
 
     //void straightRigid(Vector2 f)
     //{
@@ -67,12 +82,17 @@ public class Item : MonoBehaviour {
         {
             rigid.velocity = Vector3.zero;
             col.collider.GetComponentInParent<Stun>().startStun(stunTime);
-            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position));
+            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position, bumpForce));
         }
         else if (col.collider.tag == "Ground")
         {
-            GetComponent<Rigidbody>().isKinematic = true;
+            //GetComponent<Rigidbody>().isKinematic = true;
             CompteurPasse = 0;
+            if (throwCourbe)
+            {
+                // magic number
+                rigid.AddForce(velocity * 100);
+            }
         }
         Stop();
     }
