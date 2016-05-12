@@ -3,6 +3,7 @@ using System.Collections;
 
 public abstract class Enemy : MonoBehaviour {
     protected Transform policeStation;
+    protected float updateRate = 0.4f;
     public Transform hand;
     protected GameObject currentItem;
     protected string targetTag = "Trophy";
@@ -11,12 +12,19 @@ public abstract class Enemy : MonoBehaviour {
     public float stunTime = 1;
     protected NavMeshAgent agent;
     public float speedTime, speedMulti;
-	protected virtual void Start () {
+    public float waitingTime = 1;
+    public Animation anim;
+
+
+    protected virtual void Start () {
         currentItem = null;
         policeStation = GameObject.Find("PoliceStation").transform;
         trophy = GameObject.FindGameObjectWithTag(targetTag).transform;
         agent = GetComponent<NavMeshAgent>();
-        InvokeRepeating("personnalBehavior",0.5f,0.4f);
+        anim = GetComponentInChildren<Animation>();
+        anim.Play();
+        InvokeRepeating("personnalBehavior", updateRate, updateRate);
+
 	}
 	
 	//void Update () {
@@ -26,7 +34,7 @@ public abstract class Enemy : MonoBehaviour {
     protected virtual void personnalBehavior()
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        if (currentTarget)
+        if (currentTarget&&agent.enabled)
             agent.SetDestination(currentTarget.position);
     }
 
@@ -55,7 +63,6 @@ public abstract class Enemy : MonoBehaviour {
         {
             // Take Trophy
             currentItem = col.gameObject;
-            Debug.Log(col.gameObject.name);
             takeTrophy();
             personnalBehavior();
         }
@@ -70,13 +77,30 @@ public abstract class Enemy : MonoBehaviour {
 
     protected virtual void takeTrophy()
     {
-        if (trophy.parent.parent.tag != "Police")
+        if (trophy.parent.parent.name != "PoliceHand" && canSeeObject(trophy.gameObject))
         {
             currentItem.transform.parent = hand;
-            currentItem.transform.position = hand.position;
+            currentItem.transform.position = hand.position + (transform.forward * currentItem.GetComponent<Item>().offsetHolding);
             currentItem.transform.rotation = transform.rotation;
             currentItem.GetComponentInParent<Rigidbody>().isKinematic = true;
             currentItem.GetComponentInParent<Item>().Stop();
         }
+    }
+
+    protected bool canSeeObject(GameObject target)
+    {
+        bool canSee = false;
+        RaycastHit hit;
+        Vector3 dir = target.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, dir, out hit))
+        {
+            if (hit.collider.tag == target.tag)
+            {
+                canSee = true;
+            }
+        }
+
+        return canSee;
     }
 }

@@ -98,7 +98,7 @@ ModelImporter:
       takeName: anim_policiers_skeleton
       firstFrame: 10
       lastFrame: 34
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -204,7 +204,7 @@ ModelImporter:
       takeName: anim_policiers_skeleton
       firstFrame: 40
       lastFrame: 190
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
@@ -310,7 +310,7 @@ ModelImporter:
       takeName: anim_policiers_skeleton
       firstFrame: 195
       lastFrame: 308
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0

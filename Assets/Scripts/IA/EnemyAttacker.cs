@@ -17,27 +17,37 @@ public class EnemyAttacker : Enemy {
 
     protected override void personnalBehavior()
     {
-        if (currentItem != null && trophy.GetComponentInParent<EnemyStun>())
+        if (currentItem != null && hand.GetComponentInChildren<Item>())
         {
+            StopAllCoroutines();
             currentTarget = policeStation;
         }
-        else if (currentTarget != trophy)
+        else if (currentTarget == policeStation)
+        {
+            getRandomTarget();
+        }
+        else
         {
             currentItem = null;
-            if (Vector3.Distance(trophy.position, transform.position) <= viewDistance)
+            if (Vector3.Distance(trophy.position, transform.position) <= viewDistance&& trophy.GetComponentInParent<Enemy>()==null)
             {
                 followTrophy();
             }
             else
             {
-                foreach (GameObject player in players)
+                if (currentTarget == null)
+                    currentTarget = trophy;
+                if (Vector3.Distance(transform.position, currentTarget.position) > viewDistance)
                 {
-                    if (Vector3.Distance(player.transform.position, transform.position) <= viewDistance && !player.GetComponentInParent<Stun>().isStun)
+                    foreach (GameObject player in players)
                     {
-                        StopAllCoroutines();
-                        currentTarget = player.transform;
-                        StartCoroutine(cooldown(zTime));
-                        break;
+                        if (Vector3.Distance(player.transform.position, transform.position) <= viewDistance && !player.GetComponentInParent<Stun>().isStun)
+                        {
+                            StopAllCoroutines();
+                            currentTarget = player.transform;
+                            StartCoroutine(cooldown(zTime));
+                            break;
+                        }
                     }
                 }
             }
@@ -77,14 +87,26 @@ public class EnemyAttacker : Enemy {
                 }
             }
         }
-        
-        
         StartCoroutine(cooldown(xTime));
     }
 
     IEnumerator cooldown(float t)
     {
         yield return new WaitForSeconds(t);
+        
+        if (!GetComponent<Stun>().isStun)
+        {
+            agent.Stop();
+            anim.Play("anim_policiers_Idle");
+        }
+            
+        yield return new WaitForSeconds(waitingTime);
+        if (!GetComponent<Stun>().isStun)
+        {
+            agent.Resume();
+            anim.Play("anim_policiers_Run");
+        }
         getRandomTarget();
     }
+    
 }
