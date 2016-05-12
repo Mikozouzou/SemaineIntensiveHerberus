@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 13df74b3f1d1af844891853d8916f06b
-timeCreated: 1463070415
+guid: f15b659ce27664d43a910f8f0fd6788e
+timeCreated: 1463071606
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
@@ -9,10 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: interrupteur
-    7400000: Take 001
-    9500000: //RootNode
-    11100000: //RootNode
+    4300000: Box002
   materials:
     importMaterials: 1
     materialName: 0
@@ -71,7 +68,7 @@ ModelImporter:
     rootMotionBoneName: 
     hasTranslationDoF: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
-  animationType: 1
+  animationType: 0
   humanoidOversampling: 1
   additionalBone: 0
   userData: 
