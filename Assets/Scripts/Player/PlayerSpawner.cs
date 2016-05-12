@@ -17,7 +17,7 @@ public class PlayerSpawner : MonoBehaviour {
             {
                 Debug.Log(string.Format("GamePad found {0}", testPlayerIndex));
                 Vector3 pos = transform.position;
-                pos.x += i;
+                pos.x += i*2;
                 GameObject player = (GameObject)Instantiate(playerPrefab, pos, playerPrefab.transform.rotation);
                 player.GetComponent<Movement>().playerID = i+1;
 

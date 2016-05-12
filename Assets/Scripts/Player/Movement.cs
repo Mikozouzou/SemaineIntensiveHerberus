@@ -20,7 +20,7 @@ public class Movement : MonoBehaviour {
         anim= GetComponentInChildren<Animation>();
         anim.Play();
         transform.FindChild("Player_Physics").gameObject.layer = 8;
-        Physics.IgnoreLayerCollision(8, 9);
+        //Physics.IgnoreLayerCollision(8, 9);
     }
 	
 	
