@@ -35,6 +35,8 @@ public class EnemyAttacker : Enemy {
             }
             else
             {
+                if (currentTarget == null)
+                    currentTarget = trophy;
                 if (Vector3.Distance(transform.position, currentTarget.position) > viewDistance)
                 {
                     foreach (GameObject player in players)
