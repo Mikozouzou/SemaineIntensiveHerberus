@@ -17,7 +17,7 @@ public class EnemyAttacker : Enemy {
 
     protected override void personnalBehavior()
     {
-        if (currentItem != null && trophy.GetComponentInParent<EnemyStun>())
+        if (currentItem != null && hand.GetComponentInChildren<Item>())
         {
             currentTarget = policeStation;
         }
@@ -30,14 +30,17 @@ public class EnemyAttacker : Enemy {
             }
             else
             {
-                foreach (GameObject player in players)
+                if (Vector3.Distance(transform.position, currentTarget.position) > viewDistance)
                 {
-                    if (Vector3.Distance(player.transform.position, transform.position) <= viewDistance && !player.GetComponentInParent<Stun>().isStun)
+                    foreach (GameObject player in players)
                     {
-                        StopAllCoroutines();
-                        currentTarget = player.transform;
-                        StartCoroutine(cooldown(zTime));
-                        break;
+                        if (Vector3.Distance(player.transform.position, transform.position) <= viewDistance && !player.GetComponentInParent<Stun>().isStun)
+                        {
+                            StopAllCoroutines();
+                            currentTarget = player.transform;
+                            StartCoroutine(cooldown(zTime));
+                            break;
+                        }
                     }
                 }
             }
@@ -77,14 +80,16 @@ public class EnemyAttacker : Enemy {
                 }
             }
         }
-        
-        
         StartCoroutine(cooldown(xTime));
     }
 
     IEnumerator cooldown(float t)
     {
         yield return new WaitForSeconds(t);
+        agent.Stop();
+        yield return new WaitForSeconds(waitingTime);
+        agent.Resume();
         getRandomTarget();
     }
+    
 }
