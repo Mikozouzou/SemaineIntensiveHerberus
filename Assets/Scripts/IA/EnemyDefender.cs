@@ -6,7 +6,9 @@ public class EnemyDefender : Enemy {
     GameObject[] players;
     public float trophySpeedMulti, followDistance, quitFollowDistance;
     Vector3 startFollowPos;
+    public float timeFollowTrophy=1;
     float baseSpeed;
+    float currentTimeFollow = 0;
     protected override void Start()
     {
         players = GameObject.FindGameObjectsWithTag("Player");
@@ -19,8 +21,9 @@ public class EnemyDefender : Enemy {
     protected override void personnalBehavior()
     {
         agent.speed = baseSpeed;
-        if (currentItem != null && trophy.GetComponentInParent<EnemyStun>())
+        if (currentItem != null && hand.GetComponentInChildren<Item>())
         {
+            Debug.Log("Check");
             currentTarget = policeStation;
             agent.speed = baseSpeed * trophySpeedMulti;
         }
@@ -28,18 +31,27 @@ public class EnemyDefender : Enemy {
         {
             if (Vector3.Distance(startFollowPos, transform.position) > quitFollowDistance || currentTarget.GetComponentInParent<Stun>().isStun)
             {
-                checkPlayer();
+                StartCoroutine(wait());
             }
         }
         else
         {
+            currentTimeFollow += updateRate;
             checkPlayer();
         }
+        
+       
+
+
         base.personnalBehavior();
     }
 
     void checkPlayer()
     {
+        if (currentTimeFollow > timeFollowTrophy)
+        {
+            StartCoroutine(wait());
+        }
         currentTarget = trophy;
         startFollowPos = Vector3.zero;
         foreach (GameObject player in players)
@@ -52,7 +64,14 @@ public class EnemyDefender : Enemy {
         }
     }
 
-   
+    IEnumerator wait()
+    {
+        agent.Stop();
+        yield return new WaitForSeconds(waitingTime);
+        agent.Resume();
+        currentTimeFollow = 0;
+        checkPlayer();
+    }
 
     
 }

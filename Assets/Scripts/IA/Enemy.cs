@@ -3,6 +3,7 @@ using System.Collections;
 
 public abstract class Enemy : MonoBehaviour {
     protected Transform policeStation;
+    protected float updateRate = 0.4f;
     public Transform hand;
     protected GameObject currentItem;
     protected string targetTag = "Trophy";
@@ -11,12 +12,13 @@ public abstract class Enemy : MonoBehaviour {
     public float stunTime = 1;
     protected NavMeshAgent agent;
     public float speedTime, speedMulti;
-	protected virtual void Start () {
+    public float waitingTime = 1;
+    protected virtual void Start () {
         currentItem = null;
         policeStation = GameObject.Find("PoliceStation").transform;
         trophy = GameObject.FindGameObjectWithTag(targetTag).transform;
         agent = GetComponent<NavMeshAgent>();
-        InvokeRepeating("personnalBehavior",0.5f,0.4f);
+        InvokeRepeating("personnalBehavior", updateRate, updateRate);
 	}
 	
 	//void Update () {
