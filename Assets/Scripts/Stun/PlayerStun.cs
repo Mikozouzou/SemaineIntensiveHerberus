@@ -6,7 +6,7 @@ public class PlayerStun : Stun {
     Movement move;
     public float invincibleTime = 1;
     public bool isInvincible=false;
-    Animation anim;
+
     protected override void Start()
     {
         move = GetComponent<Movement>();

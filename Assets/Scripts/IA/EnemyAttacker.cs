@@ -25,7 +25,7 @@ public class EnemyAttacker : Enemy {
         else if (currentTarget != trophy)
         {
             currentItem = null;
-            if (Vector3.Distance(trophy.position, transform.position) <= viewDistance)
+            if (Vector3.Distance(trophy.position, transform.position) <= viewDistance&& trophy.GetComponentInParent<Enemy>()==null)
             {
                 followTrophy();
             }
