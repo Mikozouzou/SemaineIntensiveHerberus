@@ -52,7 +52,7 @@ public class OpenDoor : MonoBehaviour
             // Main door
             if (other.GetComponent<Collider>().gameObject.tag == "LeverMainDoor")
             {
-                if (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed)
+                if (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed || Input.GetKey(KeyCode.Space))
                 {
                     MainDoorTrigger _RefToTrigger = other.GetComponent<MainDoorTrigger>();
 
