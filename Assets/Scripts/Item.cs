@@ -2,8 +2,9 @@
 using System.Collections;
 
 public class Item : MonoBehaviour {
-    public bool throwCourbe ;
-    [Range(0.1f, 1.5f)]
+    public bool throwCourbe;
+    public float speed = 1;
+    [HideInInspector]
     public float velocityMulti= 0.98f;
     Vector3 velocity;
     bool isFlying;
@@ -11,6 +12,7 @@ public class Item : MonoBehaviour {
     public float stunTime = 1;
     public int CompteurPasse = 0;
     public float poids = 1;
+
 
 	void Start () {
         if (poids == 0)
@@ -22,8 +24,9 @@ public class Item : MonoBehaviour {
     {
         if (isFlying)
         {
-            transform.position += velocity*Time.deltaTime;
-            velocity *= velocityMulti;
+            transform.position += velocity * speed * Time.deltaTime;
+            if (gameObject.name == "MoneyBag")
+                velocity *= velocityMulti;
         }
     }
 
@@ -64,10 +67,11 @@ public class Item : MonoBehaviour {
         {
             rigid.velocity = Vector3.zero;
             col.collider.GetComponentInParent<Stun>().startStun(stunTime);
+            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position));
         }
         else if (col.collider.tag == "Ground")
         {
-            rigid.isKinematic = true;
+            GetComponent<Rigidbody>().isKinematic = true;
             CompteurPasse = 0;
         }
         Stop();
