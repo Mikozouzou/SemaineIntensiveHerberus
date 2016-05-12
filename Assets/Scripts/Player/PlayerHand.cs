@@ -79,7 +79,6 @@ public class PlayerHand : MonoBehaviour {
                 canSee = true;
             }
         }
-
         return canSee;
     }
 

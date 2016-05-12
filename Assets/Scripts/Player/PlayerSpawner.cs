@@ -29,6 +29,7 @@ public class PlayerSpawner : MonoBehaviour {
                 anim.transform.parent = player.transform.FindChild("Player_Graphics").transform;
 
                 anim.transform.FindChild("body").GetComponent<SkinnedMeshRenderer>().materials[0].mainTexture = texturePrefab[i];
+                if(anim.transform.FindChild("body").GetComponent<SkinnedMeshRenderer>().materials.Length>1)
                 anim.transform.FindChild("body").GetComponent<SkinnedMeshRenderer>().materials[1].mainTexture = texturePrefab[i];
             }
         }

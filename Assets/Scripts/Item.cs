@@ -14,13 +14,15 @@ public class Item : MonoBehaviour {
     public float knockbackForce;
     [HideInInspector]
     public float onGroundForce = 1000;
+    GameObject impact ;
     //public AnimationCurve curve;
 
-	void Start () {
+    void Start () {
         if (poids == 0)
             poids = 1;
         rigid = GetComponent<Rigidbody>();
-        GetComponentInChildren<Collider>().gameObject.layer = 9;
+        
+        impact = (GameObject) Resources.Load("PS_ImpactProp");
     }
 
     void Update()
@@ -39,6 +41,7 @@ public class Item : MonoBehaviour {
     {
         isFlying = true;
         CompteurPasse++;
+        StartCoroutine(reloadLayer());
         if (throwCourbe)
         {
             velocity = new Vector3(transform.forward.x, transform.up.y/2, transform.forward.z)*force;
@@ -53,6 +56,13 @@ public class Item : MonoBehaviour {
             transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         }
         
+    }
+
+    IEnumerator reloadLayer()
+    {
+        GetComponentInChildren<Collider>().gameObject.layer = 9;
+        yield return new WaitForSeconds(2);
+        GetComponentInChildren<Collider>().gameObject.layer = 0;
     }
 
     //public void Throw(float force)
@@ -82,6 +92,10 @@ public class Item : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
+        //GameObject imp = (GameObject)
+        if(isFlying)
+        Instantiate(impact, col.contacts[0].point, impact.transform.rotation);
+
         if (col.collider.tag == "Enemy" && isFlying)
         {
             rigid.velocity = Vector3.zero;
