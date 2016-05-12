@@ -15,14 +15,14 @@ public class MainDoor : MonoBehaviour
         lights = GetComponentsInChildren<Light>();
         foreach (Light light in lights)
         {
-            //light.intensity = 0;
+            light.intensity = 0;
 
         }
 	}
 
 	public void CheckDoorStatus()
 	{
-
+        enableLight();
         DoorCount++;
 		if (DoorCount >= triggers.Length)
 		{
