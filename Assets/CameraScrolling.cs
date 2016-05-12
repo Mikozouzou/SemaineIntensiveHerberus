@@ -15,10 +15,10 @@ public class CameraScrolling : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
             transform.position = Vector3.Lerp(transform.position, currentPos, 0.05f);
-        //if (Input.GetKeyDown(KeyCode.W))
-        //{
-        //    moveNextRoom();
-        //}
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            moveNextRoom();
+        }
 	}
 
     public void moveNextRoom()
