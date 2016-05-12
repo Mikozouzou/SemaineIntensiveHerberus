@@ -21,7 +21,7 @@ public class Item : MonoBehaviour {
         if (poids == 0)
             poids = 1;
         rigid = GetComponent<Rigidbody>();
-        GetComponentInChildren<Collider>().gameObject.layer = 9;
+        
         impact = (GameObject) Resources.Load("PS_ImpactProp");
     }
 
@@ -41,6 +41,7 @@ public class Item : MonoBehaviour {
     {
         isFlying = true;
         CompteurPasse++;
+        StartCoroutine(reloadLayer());
         if (throwCourbe)
         {
             velocity = new Vector3(transform.forward.x, transform.up.y/2, transform.forward.z)*force;
@@ -55,6 +56,13 @@ public class Item : MonoBehaviour {
             transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         }
         
+    }
+
+    IEnumerator reloadLayer()
+    {
+        GetComponentInChildren<Collider>().gameObject.layer = 9;
+        yield return new WaitForSeconds(2);
+        GetComponentInChildren<Collider>().gameObject.layer = 0;
     }
 
     //public void Throw(float force)
