@@ -87,12 +87,19 @@ public class EnemyAttacker : Enemy {
     IEnumerator cooldown(float t)
     {
         yield return new WaitForSeconds(t);
-        anim.Play("anim_policiers_Idle");
-        if (agent.enabled)
+        
+        if (!GetComponent<Stun>().isStun)
+        {
             agent.Stop();
+            anim.Play("anim_policiers_Idle");
+        }
+            
         yield return new WaitForSeconds(waitingTime);
-        if(agent.enabled)
-        agent.Resume();
+        if (!GetComponent<Stun>().isStun)
+        {
+            agent.Resume();
+            anim.Play("anim_policiers_Run");
+        }
         getRandomTarget();
     }
     
