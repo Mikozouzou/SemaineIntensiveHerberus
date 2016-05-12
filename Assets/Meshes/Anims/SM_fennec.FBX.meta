@@ -66,9 +66,9 @@ ModelImporter:
     400056: body
     400058: //RootNode
     4300000: body
-    7400000: anim_Fennec_Run
-    7400002: anim_Fennec_Idle
-    7400004: anim_Fennec_Stunned
+    7400000: anim_Player_Run
+    7400002: anim_Player_Idle
+    7400004: anim_Player_Stunned
     9500000: //RootNode
     11100000: //RootNode
     13700000: body
@@ -94,7 +94,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: anim_Fennec_Run
+      name: anim_Player_Run
       takeName: anim_policiers_skeleton
       firstFrame: 10
       lastFrame: 34
@@ -200,7 +200,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: anim_Fennec_Idle
+      name: anim_Player_Idle
       takeName: anim_policiers_skeleton
       firstFrame: 40
       lastFrame: 190
@@ -306,11 +306,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: anim_Fennec_Stunned
+      name: anim_Player_Stunned
       takeName: anim_policiers_skeleton
       firstFrame: 195
       lastFrame: 308
-      wrapMode: 0
+      wrapMode: 2
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0

@@ -66,9 +66,9 @@ ModelImporter:
     400056: body_louloup
     400058: //RootNode
     4300000: body_louloup
-    7400000: anim_Loup_Run
-    7400002: anim_Loup_Idle
-    7400004: anim_Loup_Stunned
+    7400000: anim_Player_Run
+    7400002: anim_Player_Idle
+    7400004: anim_Player_Stunned
     9500000: //RootNode
     11100000: //RootNode
     13700000: body_louloup
@@ -94,7 +94,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: anim_Loup_Run
+      name: anim_Player_Run
       takeName: anim_policiers_skeleton
       firstFrame: 10
       lastFrame: 34
@@ -200,7 +200,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: anim_Loup_Idle
+      name: anim_Player_Idle
       takeName: anim_policiers_skeleton
       firstFrame: 40
       lastFrame: 190
@@ -306,7 +306,7 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: anim_Loup_Stunned
+      name: anim_Player_Stunned
       takeName: anim_policiers_skeleton
       firstFrame: 195
       lastFrame: 308
