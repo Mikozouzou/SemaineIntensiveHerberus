@@ -12,8 +12,8 @@ public class Movement : MonoBehaviour {
     public float aimY;
     PlayerHand hand;
     // Use this for initialization
-
-    void Start () {
+    void Start () 
+	{
         hand = GetComponent<PlayerHand>();
 		originalSpeed = speed;
 	}
