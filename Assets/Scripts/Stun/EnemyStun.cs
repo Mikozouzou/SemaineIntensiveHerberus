@@ -5,9 +5,11 @@ public class EnemyStun : Stun
 {
     NavMeshAgent agent;
     public float bumpLenght = 5;
+    Enemy scriptMovement;
 
     protected override void Start () {
         agent = GetComponent<NavMeshAgent>();
+        scriptMovement = GetComponent<Enemy>();
         base.Start();
     }
 
@@ -17,19 +19,25 @@ public class EnemyStun : Stun
         {
             stopMovement();
         }
-
         base.startStun(t);
     }
 
     void stopMovement()
     {
+        if(anim ==null)
+            anim = GetComponent<Enemy>().anim;
+        anim.Play("anim_policiers_Stunned");
         agent.Stop();
+        agent.enabled = false;
+        scriptMovement.enabled = false;
     }
 
     void allowMovement()
     {
+        scriptMovement.enabled = true;
+        agent.enabled = true;
         agent.Resume();
-
+        anim.Play("anim_policiers_Run");
     }
 
     protected override void quitStun()
@@ -40,7 +48,6 @@ public class EnemyStun : Stun
 
     public IEnumerator bumpBack(Vector3 pos, float force =1)
     {
-        GetComponent<NavMeshAgent>().Stop();
         Vector3 dir = transform.position-pos  ;
         for (int i = 0; i < bumpLenght; i++)
         {
@@ -48,6 +55,5 @@ public class EnemyStun : Stun
             transform.position = transform.position +(dir.normalized * force * Time.deltaTime);
             yield return 1;
         }
-        GetComponent<NavMeshAgent>().Resume();
     }
 }

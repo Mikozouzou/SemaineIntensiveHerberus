@@ -19,6 +19,7 @@ public class EnemyAttacker : Enemy {
     {
         if (currentItem != null && hand.GetComponentInChildren<Item>())
         {
+            StopAllCoroutines();
             currentTarget = policeStation;
         }
         else if (currentTarget != trophy)
@@ -86,8 +87,11 @@ public class EnemyAttacker : Enemy {
     IEnumerator cooldown(float t)
     {
         yield return new WaitForSeconds(t);
-        agent.Stop();
+        anim.Play("anim_policiers_Idle");
+        if (agent.enabled)
+            agent.Stop();
         yield return new WaitForSeconds(waitingTime);
+        if(agent.enabled)
         agent.Resume();
         getRandomTarget();
     }
