@@ -18,6 +18,7 @@ public class Item : MonoBehaviour {
         if (poids == 0)
             poids = 1;
         rigid = GetComponent<Rigidbody>();
+        GetComponentInChildren<Collider>().gameObject.layer = 9;
     }
 
     void Update()
@@ -91,8 +92,7 @@ public class Item : MonoBehaviour {
             CompteurPasse = 0;
             if (throwCourbe)
             {
-                // magic number
-                rigid.AddForce(transform.forward * onGroundForce);
+                rigid.AddForce(velocity * onGroundForce);
             }
         }
         Stop();
