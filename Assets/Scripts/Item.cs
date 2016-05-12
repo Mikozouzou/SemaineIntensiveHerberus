@@ -11,13 +11,18 @@ public class Item : MonoBehaviour {
     public int CompteurPasse = 0;
     public float poids = 1;
     public float offsetHolding = 0;
+    public float knockbackForce;
+    [HideInInspector]
     public float onGroundForce = 1000;
+    GameObject impact ;
     //public AnimationCurve curve;
 
-	void Start () {
+    void Start () {
         if (poids == 0)
             poids = 1;
         rigid = GetComponent<Rigidbody>();
+        GetComponentInChildren<Collider>().gameObject.layer = 9;
+        impact = (GameObject) Resources.Load("PS_ImpactProp");
     }
 
     void Update()
@@ -79,11 +84,15 @@ public class Item : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
+        //GameObject imp = (GameObject)
+        if(isFlying)
+        Instantiate(impact, col.contacts[0].point, impact.transform.rotation);
+
         if (col.collider.tag == "Enemy" && isFlying)
         {
             rigid.velocity = Vector3.zero;
             col.collider.GetComponentInParent<Stun>().startStun(stunTime);
-            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position, throwForce/2));
+            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position, knockbackForce));
         }
         else if (col.collider.tag == "Ground")
         {
@@ -91,8 +100,7 @@ public class Item : MonoBehaviour {
             CompteurPasse = 0;
             if (throwCourbe)
             {
-                // magic number
-                rigid.AddForce(transform.forward * onGroundForce);
+                rigid.AddForce(velocity * onGroundForce);
             }
         }
         Stop();

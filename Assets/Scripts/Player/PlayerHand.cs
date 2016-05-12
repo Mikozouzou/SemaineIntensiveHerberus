@@ -54,7 +54,7 @@ public class PlayerHand : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-        if (seekItem && col.GetComponentInParent<Item>() && col.transform.parent.parent.tag != "Player")
+        if (seekItem && col.GetComponentInParent<Item>() && !col.transform.parent.GetComponentInParent<Movement>())
         {
             if (canSeeObject(col.gameObject))
             {
@@ -113,7 +113,8 @@ public class PlayerHand : MonoBehaviour {
         }
         canThrow = false;
         StartCoroutine(reloadTake(0.5f));
-
+        //Physics.IgnoreCollision(GetComponentInChildren<CapsuleCollider>(), currentItem.GetComponentInChildren<Collider>());
+        
         currentItem.GetComponent<Rigidbody>().isKinematic = false;
         currentItem.GetComponent<Item>().Throw(throwForce);
         poids = 1;

@@ -14,7 +14,7 @@ public abstract class Enemy : MonoBehaviour {
     public float speedTime, speedMulti;
     public float waitingTime = 1;
     public Animation anim;
-
+    public float dropItemForce=10;
 
     protected virtual void Start () {
         currentItem = null;
@@ -102,5 +102,24 @@ public abstract class Enemy : MonoBehaviour {
         }
 
         return canSee;
+    }
+
+    public void dropItem()
+    {
+
+        if (currentItem == null)
+            return;
+        if (!currentItem.GetComponentInParent<Enemy>())
+        {
+            currentItem = null;
+            return;
+        }
+
+
+        currentItem.GetComponent<Rigidbody>().isKinematic = false;
+        currentItem.GetComponent<Item>().Throw(dropItemForce);
+
+        currentItem.transform.parent = GameObject.Find("ThrowingProps").transform;
+        currentItem = null;
     }
 }

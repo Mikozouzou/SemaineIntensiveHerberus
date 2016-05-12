@@ -28,7 +28,7 @@ public class EnemyStun : Stun
             anim = GetComponent<Enemy>().anim;
         anim.Play("anim_policiers_Stunned");
         agent.Stop();
-        
+        scriptMovement.dropItem();
         scriptMovement.enabled = false;
     }
 
