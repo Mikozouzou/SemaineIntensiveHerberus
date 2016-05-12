@@ -54,7 +54,7 @@ public class PlayerHand : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-        if (seekItem && col.GetComponentInParent<Item>() && col.transform.parent.parent.tag != "Player")
+        if (seekItem && col.GetComponentInParent<Item>() && !col.transform.parent.GetComponentInParent<Movement>())
         {
             if (canSeeObject(col.gameObject))
             {
