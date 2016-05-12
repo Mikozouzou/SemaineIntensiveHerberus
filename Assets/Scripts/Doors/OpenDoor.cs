@@ -24,8 +24,8 @@ public class OpenDoor : MonoBehaviour
         // Normal Doors
         if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
         {
-            //if (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed)
-			if (Input.GetKey(KeyCode.Space))
+            if (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed)
+			//if (Input.GetKey(KeyCode.Space))
 			{				
                 if (canTriggerCoroutine == true)
                 {
