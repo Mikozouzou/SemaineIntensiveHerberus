@@ -55,7 +55,6 @@ public abstract class Enemy : MonoBehaviour {
         {
             // Take Trophy
             currentItem = col.gameObject;
-            Debug.Log(col.gameObject.name);
             takeTrophy();
             personnalBehavior();
         }
@@ -70,7 +69,7 @@ public abstract class Enemy : MonoBehaviour {
 
     protected virtual void takeTrophy()
     {
-        if (trophy.parent.parent.tag != "Police")
+        if (trophy.parent.parent.name != "PoliceHand" && canSeeObject(trophy.gameObject))
         {
             currentItem.transform.parent = hand;
             currentItem.transform.position = hand.position;
@@ -78,5 +77,22 @@ public abstract class Enemy : MonoBehaviour {
             currentItem.GetComponentInParent<Rigidbody>().isKinematic = true;
             currentItem.GetComponentInParent<Item>().Stop();
         }
+    }
+
+    protected bool canSeeObject(GameObject target)
+    {
+        bool canSee = false;
+        RaycastHit hit;
+        Vector3 dir = target.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, dir, out hit))
+        {
+            if (hit.collider.tag == target.tag)
+            {
+                canSee = true;
+            }
+        }
+
+        return canSee;
     }
 }

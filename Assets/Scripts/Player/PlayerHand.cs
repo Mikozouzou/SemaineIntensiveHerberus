@@ -8,7 +8,6 @@ public class PlayerHand : MonoBehaviour {
     public GameObject currentItem;
     public float throwForce;
     bool seekItem = false;
-    [HideInInspector]
     public float poids;
     public bool canTake = true;
     public bool canThrow = false;
@@ -30,7 +29,7 @@ public class PlayerHand : MonoBehaviour {
 
         float trigger = XInput.instance.getTriggerRight(playerID);
 
-        if (currentItem&& canThrow && trigger > 0.8f || Input.GetKey(KeyCode.A))
+        if (currentItem&& canThrow && (trigger > 0.8f || Input.GetKey(KeyCode.E)))
         {
             throwItem();
         }
@@ -39,12 +38,12 @@ public class PlayerHand : MonoBehaviour {
         //{
         //    checkTrophy();
         //}
-        if (!currentItem && canTake&& trigger > 0.8f || Input.GetKey(KeyCode.A))
+        if (!currentItem && (canTake&& trigger > 0.8f || Input.GetKey(KeyCode.A)))
         {
             canThrow = false;
             checkTrophy();
         }
-        else
+        else 
         {
             seekItem = false;
         }
@@ -55,20 +54,46 @@ public class PlayerHand : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-        if (seekItem && col.GetComponentInParent<Item>() && col.transform.parent.tag != "Player")
+        if (seekItem && col.GetComponentInParent<Item>() && col.transform.parent.parent.tag != "Player")
         {
-            seekItem = false;
-            currentItem = col.transform.parent.gameObject;
-            takeItem();
+            if (canSeeObject(col.gameObject))
+            {
+                seekItem = false;
+                currentItem = col.transform.parent.gameObject;
+                takeItem();
+            }
         }
     }
 
+
+    bool canSeeObject(GameObject target)
+    {
+        bool canSee = false;
+        RaycastHit hit;
+        Vector3 dir = target.transform.position - transform.position;
+
+        if (Physics.Raycast(transform.position, dir, out hit))
+        {
+            if (hit.collider.tag == target.tag)
+            {
+                canSee = true;
+            }
+        }
+
+        return canSee;
+    }
+
+
     void checkTrophy()
     {
-        if (Vector3.Distance(trophy.position,transform.position) <= 2.5f && trophy.parent.tag != "Player")
+        if (Vector3.Distance(trophy.position,transform.position) <= 2.5f && trophy.parent.parent.tag != "Player")
         {
-            currentItem = trophy.parent.gameObject;
-            takeItem();
+            if (canSeeObject(trophy.gameObject))
+            {
+                currentItem = trophy.parent.gameObject;
+                takeItem();
+            }
+            
         }
         else
         {

@@ -21,7 +21,6 @@ public class EnemyDefender : Enemy {
         agent.speed = baseSpeed;
         if (currentItem != null && trophy.GetComponentInParent<EnemyStun>())
         {
-            Debug.Log(trophy.parent.parent.parent.tag);
             currentTarget = policeStation;
             agent.speed = baseSpeed * trophySpeedMulti;
         }

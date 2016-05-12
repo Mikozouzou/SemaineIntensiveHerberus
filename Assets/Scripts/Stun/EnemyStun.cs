@@ -4,8 +4,8 @@ using System.Collections;
 public class EnemyStun : Stun
 {
     NavMeshAgent agent;
-    
-
+    public float bumpLenght = 5;
+    public float bumpForce = 1;
     protected override void Start () {
         agent = GetComponent<NavMeshAgent>();
         base.Start();
@@ -15,6 +15,7 @@ public class EnemyStun : Stun
     {
         if (!isStun)
         {
+            
             stopMovement();
         }
 
@@ -23,6 +24,7 @@ public class EnemyStun : Stun
 
     void stopMovement()
     {
+        
         agent.Stop();
     }
 
@@ -33,8 +35,23 @@ public class EnemyStun : Stun
 
     protected override void quitStun()
     {
+        
         allowMovement();
         base.quitStun();
     }
 
+    public IEnumerator bumpBack(Vector3 pos)
+    {
+        GetComponent<NavMeshAgent>().Stop();
+        Vector3 dir = transform.position-pos  ;
+        for (int i = 0; i < bumpLenght; i++)
+        {
+            
+            transform.position = transform.position +(dir.normalized *bumpForce*Time.deltaTime);
+            yield return 1;
+        }
+        GetComponent<NavMeshAgent>().Resume();
+    }
+
+    
 }
