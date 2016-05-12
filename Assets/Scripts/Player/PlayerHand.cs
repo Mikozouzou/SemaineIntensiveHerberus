@@ -85,7 +85,7 @@ public class PlayerHand : MonoBehaviour {
 
     void checkTrophy()
     {
-        if (Vector3.Distance(trophy.position,transform.position) <= 2.5f && trophy.parent.parent.tag != "Player")
+        if (Vector3.Distance(trophy.position,transform.position) <= 2.5f && !trophy.parent.GetComponentInParent<Movement>())
         {
             if (canSeeObject(trophy.gameObject))
             {

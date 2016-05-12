@@ -47,7 +47,7 @@ public abstract class Enemy : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.collider.tag == "Player")
+        if (col.collider.tag == "Player"&& !GetComponent<EnemyStun>().isStun && currentItem==null)
         {
             GameObject go = col.collider.GetComponentInParent<PlayerHand>().currentItem;
             if (go && go.tag == targetTag)

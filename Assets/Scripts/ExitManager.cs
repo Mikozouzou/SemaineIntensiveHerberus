@@ -26,7 +26,7 @@ public class ExitManager : MonoBehaviour {
             {
                 winUI.SetActive(true);
             }
-            Time.timeScale = 0;
+            GameManager.instance.EndTheGame(true);
         }
         else
         {
