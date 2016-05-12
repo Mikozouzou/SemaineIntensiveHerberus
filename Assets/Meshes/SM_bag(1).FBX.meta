@@ -1,15 +1,22 @@
 fileFormatVersion: 2
-guid: 3cbb9e2ab75e0a44ba2032021db0a6a3
-timeCreated: 1463047293
+guid: 54c7419866b399e4691937bcf2681fc5
+timeCreated: 1463047971
 licenseType: Pro
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: //RootNode
-    400000: //RootNode
-    2300000: //RootNode
-    3300000: //RootNode
-    4300000: SM_Comptoir
+    100000: Box013
+    100002: Box015
+    100004: //RootNode
+    400000: Box013
+    400002: Box015
+    400004: //RootNode
+    2300000: Box013
+    2300002: Box015
+    3300000: Box013
+    3300002: Box015
+    4300000: Box013
+    4300002: Box015
   materials:
     importMaterials: 1
     materialName: 0
@@ -34,7 +41,7 @@ ModelImporter:
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 2
+    globalScale: 4
     meshCompression: 0
     addColliders: 0
     importBlendShapes: 1
