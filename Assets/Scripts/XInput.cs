@@ -13,6 +13,7 @@ public class XInput : MonoBehaviour
     int[] vibePlayer;
     void Awake()
     {
+       
         instance = this;
         buttondown = new bool[2];
         buttondown[0] = false;
@@ -44,7 +45,7 @@ public class XInput : MonoBehaviour
     public ButtonState getButton(int id, char bt)
     {
         id--;
-
+        
         switch (bt)
         {
             case 'A':

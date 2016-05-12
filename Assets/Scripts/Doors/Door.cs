@@ -8,25 +8,45 @@ public class Door : MonoBehaviour
 	[HideInInspector]
 	public Vector3 openedPosition;
 	public bool isOpened;
+    Animator animator;
+
+
 
 	void Start () 
 	{
-		closedPosition = transform.position;
-		openedPosition = transform.position + new Vector3(0, 50, 0);
+        animator = GetComponentInChildren<Animator>();
 
-		ChangePosition();
+		if (isOpened == true)
+		{
+			animator.speed = 100;
+			animator.SetTrigger("OpenTheDoor");
+
+			// Désolé pour cette coroutine.
+			StartCoroutine(SetUpDoor());
+		}
 	}
+
+
 
 	public void ChangePosition()
 	{
 		if (isOpened == true)
 		{
-			transform.position = openedPosition;
+            animator.SetTrigger("OpenTheDoor");
 		}
 
 		else
 		{
-			transform.position = closedPosition;
-		}
+            animator.SetTrigger("CloseTheDoor");
+        }
+	}
+
+
+
+	// Cette couroutine a été créée par un professionel. Ne faites pas ça chez vous.
+	IEnumerator SetUpDoor()
+	{
+		yield return new WaitForSeconds(0.1f);
+		animator.speed = 1;
 	}
 }

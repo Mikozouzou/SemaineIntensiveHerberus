@@ -14,8 +14,11 @@ public class MainDoor : MonoBehaviour
 
 	public void CheckDoorStatus()
 	{
+        DoorCount++;
+
 		if (DoorCount >= triggers.Length)
 		{
+
 			Door _MainDoorOpening = GetComponent<Door>();
 			_MainDoorOpening.isOpened = true;
 			_MainDoorOpening.ChangePosition();

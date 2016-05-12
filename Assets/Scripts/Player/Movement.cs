@@ -4,15 +4,23 @@ using System.Collections;
 public class Movement : MonoBehaviour {
     public int playerID;
     public float speed;
+	[HideInInspector]
+	public float originalSpeed;
     public int rotateSpeed;
     public Vector3 direction;
     public float aimX;
     public float aimY;
     PlayerHand hand;
+    public Animation anim;
     // Use this for initialization
-    void Start () {
+    void Start () 
+	{
         hand = GetComponent<PlayerHand>();
-	}
+		originalSpeed = speed;
+        anim= GetComponentInChildren<Animation>();
+        anim.Play();
+
+    }
 	
 	
 
@@ -40,6 +48,7 @@ public class Movement : MonoBehaviour {
         {
             stickX = 1;
         }
+
         direction.x = stickX;
         direction.z = stickY;
         
@@ -63,14 +72,18 @@ public class Movement : MonoBehaviour {
 
         if (stickY != 0 || stickX != 0)
         {
-            move();      
+            move();
         }
-
+        else
+        {
+            anim.Play("anim_Player_Idle");
+        }
         
     }
 
     void move()
-    {        
+    {
+        anim.Play("anim_Player_Run");
         direction = direction.normalized;
         transform.position = transform.position + direction * (speed / hand.poids) * Time.deltaTime;
     }
