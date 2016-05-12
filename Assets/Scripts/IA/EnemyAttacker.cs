@@ -2,7 +2,13 @@
 using System.Collections;
 
 public class EnemyAttacker : Enemy {
-
+    enum State
+    {
+        rand,
+        player,
+        trophy,
+        station
+    }
     GameObject[] players;
     public float xTime, zTime, viewDistance;
 
