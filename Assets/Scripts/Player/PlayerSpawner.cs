@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 using XInputDotNetPure;
+using UnityEngine.UI;
 
 public class PlayerSpawner : MonoBehaviour {
     
     public GameObject playerPrefab;
     public GameObject[] animationPrefab;
+    public Texture[] texturePrefab;
 
     void Awake () {
 
@@ -25,6 +27,9 @@ public class PlayerSpawner : MonoBehaviour {
                 anim.transform.Rotate(new Vector3(0,180,0));
                 anim.transform.position = new Vector3(pos.x, pos.y - 1, pos.z);
                 anim.transform.parent = player.transform.FindChild("Player_Graphics").transform;
+
+                anim.transform.FindChild("body").GetComponent<SkinnedMeshRenderer>().materials[0].mainTexture = texturePrefab[i];
+                anim.transform.FindChild("body").GetComponent<SkinnedMeshRenderer>().materials[1].mainTexture = texturePrefab[i];
             }
         }
         
