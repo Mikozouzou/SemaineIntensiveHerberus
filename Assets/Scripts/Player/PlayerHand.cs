@@ -55,10 +55,10 @@ public class PlayerHand : MonoBehaviour {
 
     void OnTriggerStay(Collider col)
     {
-        if (seekItem && col.GetComponent<Item>() && col.transform.parent.tag != "Player")
+        if (seekItem && col.GetComponentInParent<Item>() && col.transform.parent.tag != "Player")
         {
             seekItem = false;
-            currentItem = col.gameObject;
+            currentItem = col.transform.parent.gameObject;
             takeItem();
         }
     }
@@ -67,7 +67,7 @@ public class PlayerHand : MonoBehaviour {
     {
         if (Vector3.Distance(trophy.position,transform.position) <= 2.5f && trophy.parent.tag != "Player")
         {
-            currentItem = trophy.gameObject;
+            currentItem = trophy.parent.gameObject;
             takeItem();
         }
         else
