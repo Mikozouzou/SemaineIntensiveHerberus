@@ -126,7 +126,7 @@ public class PlayerHand : MonoBehaviour {
         StartCoroutine(reloadThrow(0.2f));
         canTake = false;
         currentItem.transform.parent = hand;
-		currentItem.transform.position = hand.position;
+		currentItem.transform.position = hand.position+(transform.forward* currentItem.GetComponent<Item>().offsetHolding);
         currentItem.transform.rotation = transform.rotation;
         currentItem.GetComponent<Rigidbody>().isKinematic =true;
         currentItem.GetComponent<Item>().Stop();

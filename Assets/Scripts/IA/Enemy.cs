@@ -13,12 +13,18 @@ public abstract class Enemy : MonoBehaviour {
     protected NavMeshAgent agent;
     public float speedTime, speedMulti;
     public float waitingTime = 1;
+    public Animation anim;
+
+
     protected virtual void Start () {
         currentItem = null;
         policeStation = GameObject.Find("PoliceStation").transform;
         trophy = GameObject.FindGameObjectWithTag(targetTag).transform;
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<Animation>();
+        anim.Play();
         InvokeRepeating("personnalBehavior", updateRate, updateRate);
+
 	}
 	
 	//void Update () {
@@ -28,7 +34,7 @@ public abstract class Enemy : MonoBehaviour {
     protected virtual void personnalBehavior()
     {
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        if (currentTarget)
+        if (currentTarget&&agent.enabled)
             agent.SetDestination(currentTarget.position);
     }
 
@@ -74,7 +80,7 @@ public abstract class Enemy : MonoBehaviour {
         if (trophy.parent.parent.name != "PoliceHand" && canSeeObject(trophy.gameObject))
         {
             currentItem.transform.parent = hand;
-            currentItem.transform.position = hand.position;
+            currentItem.transform.position = hand.position + (transform.forward * currentItem.GetComponent<Item>().offsetHolding);
             currentItem.transform.rotation = transform.rotation;
             currentItem.GetComponentInParent<Rigidbody>().isKinematic = true;
             currentItem.GetComponentInParent<Item>().Stop();

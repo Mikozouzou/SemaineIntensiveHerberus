@@ -4,7 +4,7 @@ using System.Collections;
 public abstract class Stun : MonoBehaviour {
 
     Rigidbody rigid;
-    
+    protected Animation anim;
     public bool isStun = false;
 
     protected virtual void Start()

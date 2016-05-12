@@ -23,6 +23,7 @@ public class EnemyDefender : Enemy {
         agent.speed = baseSpeed;
         if (currentItem != null && hand.GetComponentInChildren<Item>())
         {
+            StopAllCoroutines();
             currentTarget = policeStation;
             agent.speed = baseSpeed * trophySpeedMulti;
         }
@@ -65,9 +66,11 @@ public class EnemyDefender : Enemy {
 
     IEnumerator wait()
     {
-        agent.Stop();
+        if (agent.enabled)
+            agent.Stop();
         yield return new WaitForSeconds(waitingTime);
-        agent.Resume();
+        if (agent.enabled)
+            agent.Resume();
         currentTimeFollow = 0;
         checkPlayer();
     }
