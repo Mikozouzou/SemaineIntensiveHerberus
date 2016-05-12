@@ -1,0 +1,456 @@
+fileFormatVersion: 2
+guid: 9a83abbba081ce141ae58570d0844b96
+timeCreated: 1463048388
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bip004
+    100002: Bip004 Head
+    100004: Bip004 L Calf
+    100006: Bip004 L Clavicle
+    100008: Bip004 L Finger0
+    100010: Bip004 L Foot
+    100012: Bip004 L Forearm
+    100014: Bip004 L Hand
+    100016: Bip004 L Thigh
+    100018: Bip004 L Toe0
+    100020: Bip004 L Toe01
+    100022: Bip004 L Toe02
+    100024: Bip004 L UpperArm
+    100026: Bip004 Neck
+    100028: Bip004 Pelvis
+    100030: Bip004 R Calf
+    100032: Bip004 R Clavicle
+    100034: Bip004 R Finger0
+    100036: Bip004 R Foot
+    100038: Bip004 R Forearm
+    100040: Bip004 R Hand
+    100042: Bip004 R Thigh
+    100044: Bip004 R Toe0
+    100046: Bip004 R Toe01
+    100048: Bip004 R Toe02
+    100050: Bip004 R UpperArm
+    100052: Bip004 Spine
+    100054: Bip004 Spine1
+    100056: body_louloup
+    100058: //RootNode
+    400000: Bip004
+    400002: Bip004 Head
+    400004: Bip004 L Calf
+    400006: Bip004 L Clavicle
+    400008: Bip004 L Finger0
+    400010: Bip004 L Foot
+    400012: Bip004 L Forearm
+    400014: Bip004 L Hand
+    400016: Bip004 L Thigh
+    400018: Bip004 L Toe0
+    400020: Bip004 L Toe01
+    400022: Bip004 L Toe02
+    400024: Bip004 L UpperArm
+    400026: Bip004 Neck
+    400028: Bip004 Pelvis
+    400030: Bip004 R Calf
+    400032: Bip004 R Clavicle
+    400034: Bip004 R Finger0
+    400036: Bip004 R Foot
+    400038: Bip004 R Forearm
+    400040: Bip004 R Hand
+    400042: Bip004 R Thigh
+    400044: Bip004 R Toe0
+    400046: Bip004 R Toe01
+    400048: Bip004 R Toe02
+    400050: Bip004 R UpperArm
+    400052: Bip004 Spine
+    400054: Bip004 Spine1
+    400056: body_louloup
+    400058: //RootNode
+    4300000: body_louloup
+    7400000: anim_Player_Run
+    7400002: anim_Player_Idle
+    7400004: anim_Player_Stunned
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: body_louloup
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: anim_Player_Run
+      takeName: anim_policiers_skeleton
+      firstFrame: 10
+      lastFrame: 34
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip004
+        weight: 1
+      - path: Bip004/Bip004 Pelvis
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0/Bip004 L Toe01
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0/Bip004 L Toe01/Bip004 L Toe02
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0/Bip004 R Toe01
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0/Bip004 R Toe01/Bip004 R Toe02
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 Head
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm/Bip004 L Hand
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm/Bip004 L Hand/Bip004 L Finger0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm/Bip004 R Hand
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm/Bip004 R Hand/Bip004 R Finger0
+        weight: 1
+      - path: body_louloup
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: anim_Player_Idle
+      takeName: anim_policiers_skeleton
+      firstFrame: 40
+      lastFrame: 190
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip004
+        weight: 1
+      - path: Bip004/Bip004 Pelvis
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0/Bip004 L Toe01
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0/Bip004 L Toe01/Bip004 L Toe02
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0/Bip004 R Toe01
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0/Bip004 R Toe01/Bip004 R Toe02
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 Head
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm/Bip004 L Hand
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm/Bip004 L Hand/Bip004 L Finger0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm/Bip004 R Hand
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm/Bip004 R Hand/Bip004 R Finger0
+        weight: 1
+      - path: body_louloup
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: anim_Player_Stunned
+      takeName: anim_policiers_skeleton
+      firstFrame: 195
+      lastFrame: 308
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bip004
+        weight: 1
+      - path: Bip004/Bip004 Pelvis
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0/Bip004 L Toe01
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 L Thigh/Bip004 L Calf/Bip004
+          L Foot/Bip004 L Toe0/Bip004 L Toe01/Bip004 L Toe02
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0/Bip004 R Toe01
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 R Thigh/Bip004 R Calf/Bip004
+          R Foot/Bip004 R Toe0/Bip004 R Toe01/Bip004 R Toe02
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 Head
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm/Bip004 L Hand
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 L
+          Clavicle/Bip004 L UpperArm/Bip004 L Forearm/Bip004 L Hand/Bip004 L Finger0
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm/Bip004 R Hand
+        weight: 1
+      - path: Bip004/Bip004 Pelvis/Bip004 Spine/Bip004 Spine1/Bip004 Neck/Bip004 R
+          Clavicle/Bip004 R UpperArm/Bip004 R Forearm/Bip004 R Hand/Bip004 R Finger0
+        weight: 1
+      - path: body_louloup
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 2
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
