@@ -8,8 +8,12 @@ public class PlayerSpawner : MonoBehaviour {
     public GameObject playerPrefab;
     public GameObject[] animationPrefab;
     public Texture[] texturePrefab;
-
+    GameObject spotlightPrefab;
+    GameObject spotLightParent;
     void Awake () {
+
+        spotlightPrefab = (GameObject) Resources.Load("SpotlightPlayer");
+        spotLightParent = GameObject.Find("GyroSpot");
 
         for (int i = 0; i < 4; ++i)
         {
@@ -22,7 +26,7 @@ public class PlayerSpawner : MonoBehaviour {
                 pos.x += i*2;
                 GameObject player = (GameObject)Instantiate(playerPrefab, pos, playerPrefab.transform.rotation);
                 player.GetComponent<Movement>().playerID = i+1;
-
+                setSpotLight(player, i+1);
                 GameObject anim = (GameObject)Instantiate(animationPrefab[i], pos, playerPrefab.transform.rotation);
                 anim.transform.Rotate(new Vector3(0,180,0));
                 anim.transform.position = new Vector3(pos.x, pos.y - 1, pos.z);
@@ -34,5 +38,13 @@ public class PlayerSpawner : MonoBehaviour {
             }
         }
         
+    }
+
+    void setSpotLight(GameObject obj, int id)
+    {
+        GameObject light = (GameObject)Instantiate(spotlightPrefab, spotLightParent.transform.position, transform.rotation);
+        light.transform.parent = spotLightParent.transform;
+        light.name = "LightPlayer " + id;
+        light.GetComponent<SpotTop>().target = obj.transform;
     }
 }

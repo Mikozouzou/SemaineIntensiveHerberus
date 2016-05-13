@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ExitManager : MonoBehaviour {
-    public GameObject winUI;
     public Dictionary<GameObject, bool> entityBoard;
+    public GameObject mainDoor;
     public bool isTheEnd = false;
+
+
 	void Start () {
         entityBoard = new Dictionary<GameObject, bool>();
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -22,16 +24,13 @@ public class ExitManager : MonoBehaviour {
         if (isTheEnd)
         {
             Debug.Log("Players Win");
-            if (winUI)
-            {
-                winUI.SetActive(true);
-            }
             GameManager.instance.EndTheGame(true);
         }
         else
         {
             //moveNextRoom
             CameraScrolling.instance.moveNextRoom();
+            mainDoor.GetComponent<Door>().closeDoor();
         }
     }
 
@@ -62,5 +61,10 @@ public class ExitManager : MonoBehaviour {
         {
             entityBoard[col.gameObject] = false;
         }
+    }
+
+    void closeTheDoorBehind()
+    {
+
     }
 }
