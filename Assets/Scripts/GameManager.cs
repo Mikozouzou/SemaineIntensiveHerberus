@@ -16,11 +16,11 @@ public class GameManager : MonoBehaviour {
         isVictory = isWin;
         if (isWin)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene("Victory");
         }
         else
         {
-            SceneManager.LoadScene(2);
+            SceneManager.LoadScene("Defeat");
         }
         
     }
