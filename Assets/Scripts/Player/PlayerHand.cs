@@ -129,6 +129,7 @@ public class PlayerHand : MonoBehaviour {
 		currentItem.transform.position = hand.position+(transform.forward* currentItem.GetComponent<Item>().offsetHolding);
         currentItem.transform.rotation = transform.rotation;
         currentItem.GetComponent<Rigidbody>().isKinematic =true;
+        currentItem.GetComponent<Item>().taken();
         currentItem.GetComponent<Item>().Stop();
         poids = currentItem.GetComponent<Item>().poids;
     }

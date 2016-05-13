@@ -26,6 +26,7 @@ public class EnemyStun : Stun
     {
         if(anim ==null)
             anim = GetComponent<Enemy>().anim;
+        if(anim)
         anim.Play("anim_policiers_Stunned");
         agent.Stop();
         scriptMovement.dropItem();
@@ -36,7 +37,8 @@ public class EnemyStun : Stun
     {
         scriptMovement.enabled = true;
         agent.Resume();
-        anim.Play("anim_policiers_Run");
+        if (anim)
+            anim.Play("anim_policiers_Run");
     }
 
     protected override void quitStun()

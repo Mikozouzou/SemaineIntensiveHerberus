@@ -138,6 +138,15 @@ public class Item : MonoBehaviour {
         Stop();
     }
 
+    public void taken()
+    {
+        if (GetComponentInParent<Movement>())
+        {
+            audioS.clip = takeSound;
+            audioS.Play();
+        }
+    }
+
     public void Stop()
     {
         if (gameObject.name == "MoneyBag" && isFlying)
@@ -147,10 +156,6 @@ public class Item : MonoBehaviour {
         }
         isFlying = false;
         velocity = Vector3.zero;
-        if (GetComponentInParent<Movement>())
-        {
-            audioS.clip = takeSound;
-            audioS.Play();
-        }
+        
     }
 }
