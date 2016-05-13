@@ -27,15 +27,6 @@ public class OpenDoor : MonoBehaviour
         }
    }
 
-    //void OnTriggerExit(Collider other)
-    //{
-    //    if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
-    //    {
-    //        audioS.Stop();
-    //    }
-    //    ResetVariables(other);
-    //}
-
     void OnTriggerStay(Collider other)
     {
         // Normal Doors
@@ -76,6 +67,7 @@ public class OpenDoor : MonoBehaviour
                     if (_RefToTrigger.isActivated == false)
                     {
                         _RefToTrigger.isActivated = true;
+						_RefToTrigger.ChangeState();
                         mainDoor.GetComponent<MainDoor>().CheckDoorStatus();
                     }
                 
