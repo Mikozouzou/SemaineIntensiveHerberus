@@ -8,14 +8,18 @@ public class OpenDoor : MonoBehaviour
 	GameObject mainDoor;
 	bool canTriggerCoroutine;
     AudioSource audioS;
-    public AudioClip activeDoor;
+    AudioClip activeDoor;
 
 	void Start()
 	{
+
+        activeDoor = (AudioClip) Resources.Load("ActivationInterrupteur");
         playerID = GetComponent<Movement>().playerID;
         canTriggerCoroutine = true;
         mainDoor = GameObject.Find("Main_Door");
         audioS = GetComponent<AudioSource>();
+        if (audioS == null)
+            audioS = gameObject.AddComponent<AudioSource>();
 
     }
 
@@ -27,23 +31,14 @@ public class OpenDoor : MonoBehaviour
         }
    }
 
-    //void OnTriggerExit(Collider other)
-    //{
-    //    if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
-    //    {
-    //        audioS.Stop();
-    //    }
-    //    ResetVariables(other);
-    //}
-
     void OnTriggerStay(Collider other)
     {
         // Normal Doors
         if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
         {
             
-            if (XInput.instance.getTriggerRight(playerID) > 0.8f)
-			//if (Input.GetKey(KeyCode.Space))
+            //if (XInput.instance.getTriggerRight(playerID) > 0.8f)
+			if (Input.GetKey(KeyCode.Space))
 			{	
                 if (canTriggerCoroutine == true)
                 {
@@ -76,6 +71,7 @@ public class OpenDoor : MonoBehaviour
                     if (_RefToTrigger.isActivated == false)
                     {
                         _RefToTrigger.isActivated = true;
+						_RefToTrigger.ChangeState();
                         mainDoor.GetComponent<MainDoor>().CheckDoorStatus();
                     }
                 
