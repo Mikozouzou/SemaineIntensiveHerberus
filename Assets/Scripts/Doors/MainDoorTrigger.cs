@@ -28,8 +28,8 @@ public class MainDoorTrigger : MonoBehaviour
         }
         basicEmissive = rend.material.GetFloat("_EmissiveValue");
 		maxEmissive = basicEmissive + emissiveVariation;
-		currentEmissive = basicEmissive;
-
+        currentEmissive = basicEmissive;
+             
 		StartCoroutine(Glow());
 	}
 
@@ -44,13 +44,16 @@ public class MainDoorTrigger : MonoBehaviour
 
 	IEnumerator Glow()
 	{
+        print("1");
 		while (this.gameObject.activeInHierarchy)
 		{
-			if (rend.material.GetFloat("_EmissiveValue") < maxEmissive)
+            print("2");
+            if (rend.material.GetFloat("_EmissiveValue") < maxEmissive)
 			{
 				while (rend.material.GetFloat("_EmissiveValue") < maxEmissive) 
 				{
-					currentEmissive += glowSpeed;
+                    print("3");
+                    currentEmissive += glowSpeed;
 					rend.material.SetFloat("_EmissiveValue", currentEmissive);
 					yield return new WaitForEndOfFrame();
 				}
