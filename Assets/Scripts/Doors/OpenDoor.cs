@@ -77,6 +77,7 @@ public class OpenDoor : MonoBehaviour
                     {
                         _RefToTrigger.isActivated = true;
                         mainDoor.GetComponent<MainDoor>().CheckDoorStatus();
+                        PoliceSpawnerManager.instance.eventSpawnOne();
                     }
                 
             }
