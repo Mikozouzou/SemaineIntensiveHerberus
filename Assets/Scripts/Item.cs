@@ -2,50 +2,100 @@
 using System.Collections;
 
 public class Item : MonoBehaviour {
-    public bool throwCourbe ;
-    [Range(0.1f, 1.5f)]
-    public float velocityMulti= 0.98f;
+    public bool throwCourbe;
+    public float throwForce = 40;
     Vector3 velocity;
     bool isFlying;
     Rigidbody rigid;
     public float stunTime = 1;
     public int CompteurPasse = 0;
     public float poids = 1;
+    public float offsetHolding = 0;
+    public float knockbackForce;
+    [HideInInspector]
+    public float onGroundForce = 1000;
+    GameObject impact ;
+    AudioSource audioS;
+    AudioClip takeSound;
+    public AudioClip throwSound;
+    public AudioClip impactSound;
+    //public AnimationCurve curve;
 
-	void Start () {
+    void Awake()
+    {
+        audioS = this.gameObject.AddComponent<AudioSource>();
+    }
+
+    void Start () {
         if (poids == 0)
             poids = 1;
         rigid = GetComponent<Rigidbody>();
+
+        if (takeSound == null)
+            takeSound = (AudioClip) Resources.Load("RamassageObjet");
+        if (throwSound == null)
+            throwSound = (AudioClip) Resources.Load("LancerObjet");
+        if (impactSound == null)
+            impactSound = (AudioClip) Resources.Load("ImpactObjet");
+
+        impact = (GameObject) Resources.Load("PS_ImpactProp");
     }
 
     void Update()
     {
         if (isFlying)
         {
-            transform.position += velocity*Time.deltaTime;
-            velocity *= velocityMulti;
+            if (throwCourbe)
+            {
+                transform.position += velocity * Time.deltaTime;
+                velocity *= throwForce;
+            }
         }
     }
 
     public void Throw(float force)
     {
+        audioS.clip = throwSound;
+        audioS.Play();
         isFlying = true;
         CompteurPasse++;
+        StartCoroutine(reloadLayer());
         if (throwCourbe)
         {
             velocity = new Vector3(transform.forward.x, transform.up.y/2, transform.forward.z)*force;
+        }
+        else
+        {
+            rigid.AddForce((transform.forward * force * throwForce));
         }
         if (gameObject.name == "MoneyBag")
         {
             //transform.GetChild(0).gameObject.SetActive(true);
             transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         }
-        else
-        {
-            velocity = transform.forward * force;
-        }
+        
     }
-    
+
+    IEnumerator reloadLayer()
+    {
+        GetComponentInChildren<Collider>().gameObject.layer = 9;
+        yield return new WaitForSeconds(2);
+        GetComponentInChildren<Collider>().gameObject.layer = 0;
+    }
+
+    //public void Throw(float force)
+    //{
+    //    isFlying = true;
+    //    if (throwCourbe)
+    //    {
+    //        rigid.AddForce((transform.forward+transform.up*2) * force *50);
+    //    }
+    //    else
+    //    {
+    //        rigid.AddForce((transform.forward * force * 50));
+    //    }
+      
+    //}
 
     //void straightRigid(Vector2 f)
     //{
@@ -60,17 +110,41 @@ public class Item : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
+
+        //GameObject imp = (GameObject)
+        if (isFlying)
+        {
+            audioS.clip = impactSound;
+            audioS.Play();
+            Instantiate(impact, col.contacts[0].point, impact.transform.rotation);
+        }
+        
+
         if (col.collider.tag == "Enemy" && isFlying)
         {
             rigid.velocity = Vector3.zero;
             col.collider.GetComponentInParent<Stun>().startStun(stunTime);
+            StartCoroutine(col.collider.GetComponentInParent<EnemyStun>().bumpBack(transform.position, knockbackForce));
         }
         else if (col.collider.tag == "Ground")
         {
-            rigid.isKinematic = true;
+            //GetComponent<Rigidbody>().isKinematic = true;
             CompteurPasse = 0;
+            if (throwCourbe)
+            {
+                rigid.AddForce(velocity * onGroundForce);
+            }
         }
         Stop();
+    }
+
+    public void taken()
+    {
+        if (GetComponentInParent<Movement>())
+        {
+            audioS.clip = takeSound;
+            audioS.Play();
+        }
     }
 
     public void Stop()
@@ -82,5 +156,6 @@ public class Item : MonoBehaviour {
         }
         isFlying = false;
         velocity = Vector3.zero;
+        
     }
 }

@@ -6,16 +6,21 @@ public class MainDoor : MonoBehaviour
 	public GameObject[] triggers;
 	[HideInInspector]
 	public int DoorCount;
-
-	void Start()
+    void Start()
 	{
 		DoorCount = 0;
+        //lights = GetComponentsInChildren<Light>();
+        //foreach (Light light in lights)
+        //{
+        //    light.intensity = 0;
+
+        //}
 	}
 
 	public void CheckDoorStatus()
 	{
+        //enableLight();
         DoorCount++;
-
 		if (DoorCount >= triggers.Length)
 		{
 
@@ -26,4 +31,12 @@ public class MainDoor : MonoBehaviour
 			this.enabled = false;
 		}
 	}
+
+    //void enableLight()
+    //{
+    //    lights[countLight].intensity = lightIntensity;
+    //    countLight++;
+    //    lights[countLight].intensity = lightIntensity;
+    //    countLight++;
+    //}
 }

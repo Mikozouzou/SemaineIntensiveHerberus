@@ -22,6 +22,9 @@ ExportedObj/
 # Unity3D generated meta files
 *.pidb.meta
 
+<<<<<<< HEAD
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
-Assets/Scenes/Main.unity
+=======
+
+>>>>>>> refs/remotes/origin/Merge

@@ -4,6 +4,8 @@ using System.Collections;
 public class PlayerStun : Stun {
 
     Movement move;
+    public float invincibleTime = 1;
+    public bool isInvincible=false;
 
     protected override void Start()
     {
@@ -13,17 +15,21 @@ public class PlayerStun : Stun {
 
     public override void startStun(float t)
     {
-        if (!isStun)
+        if (!isStun && !isInvincible)
         {
+            XInput.instance.useVibe(GetComponent<Movement>().playerID,t,10,10);
             stopMovement();
+            base.startStun(t);
         }
-
-        base.startStun(t);
     }
 
     void stopMovement()
     {
         move.enabled = false;
+        if (anim == null)
+            anim =GetComponent<Movement>().anim;
+        anim.Play("anim_Player_Stunned");
+        
     }
 
     void allowMovement()
@@ -33,7 +39,14 @@ public class PlayerStun : Stun {
 
     protected override void quitStun()
     {
+        StartCoroutine(invincible());
         allowMovement();
         base.quitStun();
+    }
+    IEnumerator invincible()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibleTime);
+        isInvincible = false;
     }
 }

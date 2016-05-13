@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Lever : MonoBehaviour 
@@ -7,8 +8,15 @@ public class Lever : MonoBehaviour
 	public float openingTimer;
 	[HideInInspector]
 	public bool isIncreasing;
-	bool isOpened;
+	[HideInInspector]
 	public bool coroutineIsRunning;
+	public Renderer shaderLoading;
+	bool isOpened;
+
+    void Start()
+    {
+		shaderLoading = transform.parent.FindChild("Canvas").FindChild("Loading_Bar").GetComponent<Renderer>();
+    }
 
 	public IEnumerator DoorState()
 	{
@@ -24,17 +32,30 @@ public class Lever : MonoBehaviour
 		}
 
 		int _timer = 0;
-		int _timerMax = 10; // Just made so that we have a timer
+		float _shaderValue = 0;
+		float _timerMax = 90; // Just made so that we have a "timer". Also used as the number of parts to fill in the gap of the image.
+		float _interval = openingTimer / _timerMax;
 
 		while (_timer < _timerMax)
 		{
-			yield return new WaitForSeconds(openingTimer / _timerMax);
-			_timer++;
-
-			if (isIncreasing == false)
+			if (isIncreasing)
 			{
-				coroutineIsRunning = false;
-				yield break;
+				_timer++;
+				_shaderValue += _interval;
+				shaderLoading.material.SetFloat("_LeverLoading", _shaderValue);
+
+				if (_timer >= _timerMax)
+				{
+					break;	
+				}
+
+				yield return new WaitForSeconds(_interval);
+			}
+
+			else 
+			{
+				shaderLoading.material.SetFloat("_LeverLoading", 0);
+				break;
 			}
 		}
 			
@@ -59,6 +80,8 @@ public class Lever : MonoBehaviour
 					_door.ChangePosition();
 				}
 			}
+
+			shaderLoading.material.SetFloat("_LeverLoading", 0);
 		}
 
 		coroutineIsRunning = false;

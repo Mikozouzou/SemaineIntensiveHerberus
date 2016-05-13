@@ -4,13 +4,18 @@ using System.Collections;
 public abstract class Stun : MonoBehaviour {
 
     Rigidbody rigid;
-    
+    protected Animation anim;
     public bool isStun = false;
+    AudioSource audioS;
+    AudioClip sonStun;
 
     protected virtual void Start()
     {
+        audioS = this.gameObject.AddComponent<AudioSource>();
         rigid = GetComponent<Rigidbody>();
-        
+        sonStun = (AudioClip) Resources.Load("Stun");
+        audioS.clip = sonStun;
+
     }
 
 
@@ -19,6 +24,8 @@ public abstract class Stun : MonoBehaviour {
     {
         if (!isStun)
         {
+            audioS.Play();
+
             isStun = true;
             if (rigid)
                 rigid.isKinematic = true;
@@ -34,6 +41,7 @@ public abstract class Stun : MonoBehaviour {
 
     protected virtual void quitStun()
     {
+        audioS.Stop();
         if (rigid)
             rigid.isKinematic = false;
         isStun = false;

@@ -11,20 +11,25 @@ public class Movement : MonoBehaviour {
     public float aimX;
     public float aimY;
     PlayerHand hand;
+    public Animation anim;
+    Rigidbody rigid;
     // Use this for initialization
     void Start () 
 	{
+        rigid = GetComponent<Rigidbody>();
         hand = GetComponent<PlayerHand>();
 		originalSpeed = speed;
-	}
+        anim= GetComponentInChildren<Animation>();
+        anim.Play();
+        transform.FindChild("Player_Physics").gameObject.layer = 8;
+        Physics.IgnoreLayerCollision(8, 9);
+        
+    }
 	
 	
 
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            GetComponent<PlayerStun>().startStun(1);
-        }
+        rigid.velocity = new Vector3(0,rigid.velocity.y,0);
 
         float stickX = XInput.instance.getLeftXStick(playerID);
         float stickY = XInput.instance.getLeftYStick(playerID);
@@ -68,14 +73,18 @@ public class Movement : MonoBehaviour {
 
         if (stickY != 0 || stickX != 0)
         {
-            move();      
+            move();
         }
-
+        else
+        {
+            anim.Play("anim_Player_Idle");
+        }
         
     }
 
     void move()
-    {        
+    {
+        anim.Play("anim_Player_Run");
         direction = direction.normalized;
         transform.position = transform.position + direction * (speed / hand.poids) * Time.deltaTime;
     }

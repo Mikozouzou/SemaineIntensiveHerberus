@@ -3,9 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class ExitManager : MonoBehaviour {
-    public GameObject winUI;
     public Dictionary<GameObject, bool> entityBoard;
-	
+    public GameObject mainDoor;
+    public bool isTheEnd = false;
+
+
 	void Start () {
         entityBoard = new Dictionary<GameObject, bool>();
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -17,14 +19,19 @@ public class ExitManager : MonoBehaviour {
         entityBoard.Add(GameObject.FindGameObjectWithTag("Trophy"), false);
     }
 
-    void endGame()
+    void endRoom()
     {
-        Debug.Log("Players Win");
-        if (winUI)
+        if (isTheEnd)
         {
-            winUI.SetActive(true);
+            Debug.Log("Players Win");
+            GameManager.instance.EndTheGame(true);
         }
-        Time.timeScale = 0;
+        else
+        {
+            //moveNextRoom
+            CameraScrolling.instance.moveNextRoom();
+            mainDoor.GetComponent<Door>().closeDoor();
+        }
     }
 
     void checkBoard()
@@ -36,7 +43,7 @@ public class ExitManager : MonoBehaviour {
                 return;
             }
         }
-        endGame();
+        endRoom();
     }
 
     void OnTriggerEnter(Collider col)
@@ -54,5 +61,10 @@ public class ExitManager : MonoBehaviour {
         {
             entityBoard[col.gameObject] = false;
         }
+    }
+
+    void closeTheDoorBehind()
+    {
+
     }
 }
