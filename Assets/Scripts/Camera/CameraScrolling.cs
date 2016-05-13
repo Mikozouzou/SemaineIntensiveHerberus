@@ -3,18 +3,18 @@ using System.Collections;
 
 public class CameraScrolling : MonoBehaviour {
     public static CameraScrolling instance;
-    public Vector3[] positionList;
+    public float[] positionXList;
     int indexPos = 0;
-    Vector3 currentPos;
+    float currentPos;
 	// Use this for initialization
 	void Start () {
         instance = this;
-        currentPos = transform.position;
+        currentPos = transform.position.x;
     }
 	
 	// Update is called once per frame
 	void Update () {
-            transform.position = Vector3.Lerp(transform.position, currentPos, 0.05f);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(currentPos, transform.position.y,transform.position.z),  0.05f);
         if (Input.GetKeyDown(KeyCode.W))
         {
             moveNextRoom();
@@ -23,9 +23,9 @@ public class CameraScrolling : MonoBehaviour {
 
     public void moveNextRoom()
     {
-        if (positionList.Length > indexPos)
+        if (positionXList.Length > indexPos)
         {
-            currentPos = positionList[indexPos];
+            currentPos = positionXList[indexPos];
             indexPos++;
         }
         

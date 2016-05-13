@@ -26,6 +26,12 @@ public class Door : MonoBehaviour
 		}
 	}
 
+    public void closeDoor()
+    {
+        if (isOpened)
+            animator.SetTrigger("CloseTheDoor");
+        isOpened = false;
+    }
 
 
 	public void ChangePosition()
