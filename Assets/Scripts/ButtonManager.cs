@@ -184,7 +184,7 @@ public class ButtonManager : MonoBehaviour {
             {
                 // Start
                 case 0:
-                    SceneManager.LoadScene("Main");
+                    SceneManager.LoadScene("Tutoriel");
                     break;
                 // Levels
                 case 1:

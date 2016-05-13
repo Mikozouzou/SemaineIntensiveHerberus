@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour {
 
     void OnLevelWasLoaded(int level)
     {
-        if (level==1||level==2)
+        if (level==3||level==4)
         {
             if (isVictory)
             {

@@ -9,7 +9,7 @@ public class Credits : MonoBehaviour
     {
 	    if (XInput.instance.getButton(1,'B') == XInputDotNetPure.ButtonState.Pressed || XInput.instance.getButton(1, 'A') == XInputDotNetPure.ButtonState.Pressed)
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(0);
         }
 	}
 }
