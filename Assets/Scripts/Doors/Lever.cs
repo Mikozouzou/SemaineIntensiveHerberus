@@ -10,12 +10,12 @@ public class Lever : MonoBehaviour
 	public bool isIncreasing;
 	[HideInInspector]
 	public bool coroutineIsRunning;
-	public Image imageFeedback;
+	public Renderer shaderLoading;
 	bool isOpened;
 
     void Start()
     {
-        imageFeedback = transform.parent.FindChild("Canvas").FindChild("Lever_Door_Loading").GetComponent<Image>();
+		shaderLoading = transform.parent.FindChild("Canvas").FindChild("Loading_Bar").GetComponent<Renderer>();
     }
 
 	public IEnumerator DoorState()
@@ -32,6 +32,7 @@ public class Lever : MonoBehaviour
 		}
 
 		int _timer = 0;
+		float _shaderValue = 0;
 		float _timerMax = 90; // Just made so that we have a "timer". Also used as the number of parts to fill in the gap of the image.
 		float _interval = openingTimer / _timerMax;
 
@@ -40,7 +41,8 @@ public class Lever : MonoBehaviour
 			if (isIncreasing)
 			{
 				_timer++;
-				imageFeedback.fillAmount += _interval;
+				_shaderValue += _interval;
+				shaderLoading.material.SetFloat("_LeverLoading", _shaderValue);
 
 				if (_timer >= _timerMax)
 				{
@@ -52,7 +54,7 @@ public class Lever : MonoBehaviour
 
 			else 
 			{
-				imageFeedback.fillAmount = 0;
+				shaderLoading.material.SetFloat("_LeverLoading", 0);
 				break;
 			}
 		}
@@ -79,7 +81,7 @@ public class Lever : MonoBehaviour
 				}
 			}
 
-			imageFeedback.fillAmount = 0; // reset image
+			shaderLoading.material.SetFloat("_LeverLoading", 0);
 		}
 
 		coroutineIsRunning = false;
