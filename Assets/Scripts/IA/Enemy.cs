@@ -22,6 +22,7 @@ public abstract class Enemy : MonoBehaviour {
         trophy = GameObject.FindGameObjectWithTag(targetTag).transform;
         agent = GetComponent<NavMeshAgent>();
         anim = GetComponentInChildren<Animation>();
+        if(anim)
         anim.Play();
         InvokeRepeating("personnalBehavior", updateRate, updateRate);
 
