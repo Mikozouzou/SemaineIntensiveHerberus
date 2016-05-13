@@ -1,21 +1,63 @@
 ﻿using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class MenuManager : MonoBehaviour {
-    
-    public void retry()
+
+    public CanvasGroup menuInGame;
+    private bool opened = false;
+
+    void Start()
     {
-        SceneManager.LoadScene(0);
+        opened = false;
+        menuInGame.alpha = 0;
+        menuInGame.interactable = false;
+
     }
 
-    public void quit()
+	void Update () {
+
+	
+        if(Input.GetButtonDown("Start_0") && opened == false)
+        {
+            Debug.Log("hello");
+
+            Time.timeScale = 0;
+            menuInGame.alpha = 1;
+            menuInGame.interactable = true;
+            //menuInGame.SetActive(true);
+            opened = true;
+            return;
+        }
+        if (Input.GetButtonDown("Start_0") && opened == true)
+        {
+            menuInGame.alpha = 0;
+            menuInGame.interactable = false;
+            //menuInGame.SetActive(false);
+            opened = false;
+            Time.timeScale = 1;
+            return;
+        }
+    }
+
+    public void resume()
+    {
+        menuInGame.alpha = 0;
+        menuInGame.interactable = false;
+        //menuInGame.SetActive(false);
+        opened = false;
+        Time.timeScale = 1;
+        return;
+    }
+
+    public void quit ()
     {
         Application.Quit();
     }
 
-    public void credit()
+    public void reload ()
     {
-        print("Display Credit");
+
     }
+
+   
 }
