@@ -19,6 +19,7 @@ public class EnemyStun : Stun
         {
             stopMovement();
         }
+
         base.startStun(t);
     }
 
