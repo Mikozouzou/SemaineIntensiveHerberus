@@ -14,23 +14,16 @@ public class GameManager : MonoBehaviour {
     public void EndTheGame(bool isWin)
     {
         isVictory = isWin;
-        SceneManager.LoadScene(1);
-    }
-
-    void OnLevelWasLoaded(int level)
-    {
-        if (level==1)
+        if (isWin)
         {
-            if (isVictory)
-            {
-                GameObject.Find("Title").GetComponent<Text>().text = "Victory";
-            }
-            else
-            {
-                GameObject.Find("Title").GetComponent<Text>().text = "Defeat";
-            }
-            
+            SceneManager.LoadScene("Victory");
         }
+        else
+        {
+            SceneManager.LoadScene("Defeat");
+        }
+        
     }
+    
 	
 }

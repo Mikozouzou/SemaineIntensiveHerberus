@@ -27,7 +27,7 @@ public class PlayerHand : MonoBehaviour {
             StartCoroutine(reloadTake(0.5f));
         }
 
-        float trigger = XInput.instance.getTriggerRight(playerID);
+		float trigger = XInput.instance.getTriggerRight(playerID);
 
         if (currentItem&& canThrow && (trigger > 0.8f || Input.GetKey(KeyCode.E)))
         {

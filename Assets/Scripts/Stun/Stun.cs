@@ -8,6 +8,7 @@ public abstract class Stun : MonoBehaviour {
     public bool isStun = false;
     AudioSource audioS;
     AudioClip sonStun;
+	GameObject particleStun;
 
     protected virtual void Start()
     {
@@ -15,13 +16,16 @@ public abstract class Stun : MonoBehaviour {
         rigid = GetComponent<Rigidbody>();
         sonStun = (AudioClip) Resources.Load("Stun");
         audioS.clip = sonStun;
-
+		particleStun = (GameObject) Resources.Load("PS_Stun");
     }
 
 
 
     public virtual void startStun(float t)
     {
+		GameObject _partStun = (GameObject) Instantiate(particleStun, transform.position + (Vector3.up * 5), Quaternion.identity);
+		Destroy(_partStun, 1f);
+
         if (!isStun)
         {
             audioS.Play();
