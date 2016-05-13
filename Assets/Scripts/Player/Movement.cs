@@ -12,9 +12,11 @@ public class Movement : MonoBehaviour {
     public float aimY;
     PlayerHand hand;
     public Animation anim;
+    Rigidbody rigid;
     // Use this for initialization
     void Start () 
 	{
+        rigid = GetComponent<Rigidbody>();
         hand = GetComponent<PlayerHand>();
 		originalSpeed = speed;
         anim= GetComponentInChildren<Animation>();
@@ -27,10 +29,7 @@ public class Movement : MonoBehaviour {
 	
 
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            GetComponent<PlayerStun>().startStun(1);
-        }
+        rigid.velocity = new Vector3(0,rigid.velocity.y,0);
 
         float stickX = XInput.instance.getLeftXStick(playerID);
         float stickY = XInput.instance.getLeftYStick(playerID);
