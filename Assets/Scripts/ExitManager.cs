@@ -31,6 +31,7 @@ public class ExitManager : MonoBehaviour {
         {
             //moveNextRoom
             CameraScrolling.instance.moveNextRoom();
+            if(mainDoor)
             mainDoor.GetComponent<Door>().closeDoor();
         }
     }

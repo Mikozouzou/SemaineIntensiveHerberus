@@ -16,6 +16,6 @@ public class MenuManager : MonoBehaviour {
 
     public void credit()
     {
-        print("Display Credit");
+        SceneManager.LoadScene(3);
     }
 }
