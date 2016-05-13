@@ -5,7 +5,7 @@ using System.Collections;
 public class OpenDoor : MonoBehaviour 
 {
     int playerID;
-	GameObject mainDoor;
+	public GameObject mainDoor;
 	bool canTriggerCoroutine;
     AudioSource audioS;
     AudioClip activeDoor;
@@ -18,9 +18,11 @@ public class OpenDoor : MonoBehaviour
         canTriggerCoroutine = true;
         mainDoor = GameObject.Find("Main_Door");
         audioS = GetComponent<AudioSource>();
-        if (audioS == null)
+        
+		if (audioS == null)
+		{
             audioS = gameObject.AddComponent<AudioSource>();
-
+		}
     }
 
     void OnTriggerEnter(Collider other)
@@ -72,8 +74,14 @@ public class OpenDoor : MonoBehaviour
                     {
                         _RefToTrigger.isActivated = true;
 						_RefToTrigger.ChangeState();
-                        mainDoor.GetComponent<MainDoor>().CheckDoorStatus();
-                        PoliceSpawnerManager.instance.eventSpawnOne();
+						
+						if (mainDoor.GetComponent<MainDoor>())
+						{
+							mainDoor.GetComponent<MainDoor>().CheckDoorStatus();
+							PoliceSpawnerManager.instance.eventSpawnOne();
+						}
+
+                        
                     }
                 
             }

@@ -8,7 +8,8 @@ public class ExitManager : MonoBehaviour {
     public bool isTheEnd = false;
 
 
-	void Start () {
+	void Start () 
+	{
         entityBoard = new Dictionary<GameObject, bool>();
         GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
         foreach (GameObject go in players)
