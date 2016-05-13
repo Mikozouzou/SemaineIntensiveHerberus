@@ -15,13 +15,29 @@ public class Item : MonoBehaviour {
     [HideInInspector]
     public float onGroundForce = 1000;
     GameObject impact ;
+    AudioSource audioS;
+    AudioClip takeSound;
+    public AudioClip throwSound;
+    public AudioClip impactSound;
     //public AnimationCurve curve;
+
+    void Awake()
+    {
+        audioS = this.gameObject.AddComponent<AudioSource>();
+    }
 
     void Start () {
         if (poids == 0)
             poids = 1;
         rigid = GetComponent<Rigidbody>();
-        GetComponentInChildren<Collider>().gameObject.layer = 9;
+
+        if (takeSound == null)
+            takeSound = (AudioClip) Resources.Load("RamassageObjet");
+        if (throwSound == null)
+            throwSound = (AudioClip) Resources.Load("LancerObjet");
+        if (impactSound == null)
+            impactSound = (AudioClip) Resources.Load("ImpactObjet");
+
         impact = (GameObject) Resources.Load("PS_ImpactProp");
     }
 
@@ -39,8 +55,11 @@ public class Item : MonoBehaviour {
 
     public void Throw(float force)
     {
+        audioS.clip = throwSound;
+        audioS.Play();
         isFlying = true;
         CompteurPasse++;
+        StartCoroutine(reloadLayer());
         if (throwCourbe)
         {
             velocity = new Vector3(transform.forward.x, transform.up.y/2, transform.forward.z)*force;
@@ -55,6 +74,13 @@ public class Item : MonoBehaviour {
             transform.GetChild(0).GetComponent<ParticleSystem>().Play();
         }
         
+    }
+
+    IEnumerator reloadLayer()
+    {
+        GetComponentInChildren<Collider>().gameObject.layer = 9;
+        yield return new WaitForSeconds(2);
+        GetComponentInChildren<Collider>().gameObject.layer = 0;
     }
 
     //public void Throw(float force)
@@ -84,9 +110,15 @@ public class Item : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
+
         //GameObject imp = (GameObject)
-        if(isFlying)
-        Instantiate(impact, col.contacts[0].point, impact.transform.rotation);
+        if (isFlying)
+        {
+            audioS.clip = impactSound;
+            audioS.Play();
+            Instantiate(impact, col.contacts[0].point, impact.transform.rotation);
+        }
+        
 
         if (col.collider.tag == "Enemy" && isFlying)
         {
@@ -115,5 +147,10 @@ public class Item : MonoBehaviour {
         }
         isFlying = false;
         velocity = Vector3.zero;
+        if (GetComponentInParent<Movement>())
+        {
+            audioS.clip = takeSound;
+            audioS.Play();
+        }
     }
 }

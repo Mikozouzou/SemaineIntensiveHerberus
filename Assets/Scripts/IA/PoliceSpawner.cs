@@ -27,6 +27,7 @@ public class PoliceSpawner : MonoBehaviour {
         {
             GameObject men = (GameObject)Instantiate(spawnPrefabList[currentIndex], transform.position, transform.rotation);
             men.transform.parent = policeHolder;
+            PoliceStation.instance.AddOnePolice(men);
             currentIndex++;
         }
         else if (canLoop)

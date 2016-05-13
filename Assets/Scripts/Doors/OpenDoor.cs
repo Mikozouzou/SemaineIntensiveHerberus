@@ -7,7 +7,8 @@ public class OpenDoor : MonoBehaviour
     int playerID;
 	GameObject mainDoor;
 	bool canTriggerCoroutine;
-
+    AudioSource audioS;
+    public AudioClip activeDoor;
 
 
 	void Start()
@@ -15,17 +16,36 @@ public class OpenDoor : MonoBehaviour
         playerID = GetComponent<Movement>().playerID;
         canTriggerCoroutine = true;
         mainDoor = GameObject.Find("Main_Door");
-	}
+        audioS = GetComponent<AudioSource>();
 
+    }
 
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
+        {
+            audioS.clip = activeDoor;
+            audioS.Play();
+        }
+   }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
+        {
+            audioS.Stop();
+        }
+        ResetVariables(other);
+    }
 
     void OnTriggerStay(Collider other)
     {
         // Normal Doors
         if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
         {
-            //if (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed)
-			if (Input.GetKey(KeyCode.Space))
+            
+            if (XInput.instance.getTriggerRight(playerID) > 0.8f)
+			//if (Input.GetKey(KeyCode.Space))
 			{				
                 if (canTriggerCoroutine == true)
                 {
@@ -52,8 +72,6 @@ public class OpenDoor : MonoBehaviour
             // Main door
             if (other.GetComponent<Collider>().gameObject.tag == "LeverMainDoor")
             {
-                if (XInput.instance.getButton(playerID, 'A') == XInputDotNetPure.ButtonState.Pressed)
-                {
                     MainDoorTrigger _RefToTrigger = other.GetComponent<MainDoorTrigger>();
 
                     if (_RefToTrigger.isActivated == false)
@@ -61,16 +79,11 @@ public class OpenDoor : MonoBehaviour
                         _RefToTrigger.isActivated = true;
                         mainDoor.GetComponent<MainDoor>().CheckDoorStatus();
                     }
-                }
+                
             }
         }
        
-
-
-	void OnTriggerExit (Collider other)
-	{
-		ResetVariables(other);
-	}
+    
 
 
 
