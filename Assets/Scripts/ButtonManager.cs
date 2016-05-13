@@ -256,15 +256,15 @@ public class ButtonManager : MonoBehaviour {
                     break;
                 // Load Level 01
                 case 1:
-                    SceneManager.LoadScene("Scene_1_2_3");
+                    SceneManager.LoadScene("Tutoriel");
                     break;
                 // Load Level 02
                 case 2:
-                    SceneManager.LoadScene("Scene_2_3");
+                    SceneManager.LoadScene("Main");
                     break;
                 // Load Level 03
                 case 3:
-                    SceneManager.LoadScene("Scene_3");
+                    //SceneManager.LoadScene("Scene_3");
                     break;
             }
         }
