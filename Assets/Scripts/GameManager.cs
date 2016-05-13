@@ -14,12 +14,20 @@ public class GameManager : MonoBehaviour {
     public void EndTheGame(bool isWin)
     {
         isVictory = isWin;
-        SceneManager.LoadScene(1);
+        if (isWin)
+        {
+            SceneManager.LoadScene(1);
+        }
+        else
+        {
+            SceneManager.LoadScene(2);
+        }
+        
     }
 
     void OnLevelWasLoaded(int level)
     {
-        if (level==1)
+        if (level==1||level==2)
         {
             if (isVictory)
             {
