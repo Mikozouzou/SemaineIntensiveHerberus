@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PoliceSpawnerManager : MonoBehaviour {
-    PoliceSpawnerManager instance;
+    public static PoliceSpawnerManager instance;
     PoliceSpawner[] arraySpawner;
 
 	void Start () {
