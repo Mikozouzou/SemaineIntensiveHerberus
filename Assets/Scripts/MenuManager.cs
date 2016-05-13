@@ -11,7 +11,7 @@ public class MenuManager : MonoBehaviour {
 
     public void quit()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Menu");
     }
 
     public void credit()
