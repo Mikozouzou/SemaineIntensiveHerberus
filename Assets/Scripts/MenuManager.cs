@@ -6,16 +6,16 @@ public class MenuManager : MonoBehaviour {
     
     public void retry()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main");
     }
 
     public void quit()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Menu");
     }
 
     public void credit()
     {
-        print("Display Credit");
+        SceneManager.LoadScene("Credits");
     }
 }

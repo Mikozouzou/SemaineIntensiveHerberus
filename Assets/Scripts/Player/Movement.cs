@@ -23,13 +23,14 @@ public class Movement : MonoBehaviour {
         anim.Play();
         transform.FindChild("Player_Physics").gameObject.layer = 8;
         Physics.IgnoreLayerCollision(8, 9);
-        
     }
 	
 	
 
 	void Update () {
         rigid.velocity = new Vector3(0,rigid.velocity.y,0);
+
+        
 
         float stickX = XInput.instance.getLeftXStick(playerID);
         float stickY = XInput.instance.getLeftYStick(playerID);

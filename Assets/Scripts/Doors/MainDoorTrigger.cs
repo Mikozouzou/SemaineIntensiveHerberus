@@ -44,15 +44,15 @@ public class MainDoorTrigger : MonoBehaviour
 
 	IEnumerator Glow()
 	{
-        print("1");
+        
 		while (this.gameObject.activeInHierarchy)
 		{
-            print("2");
+       
             if (rend.material.GetFloat("_EmissiveValue") < maxEmissive)
 			{
 				while (rend.material.GetFloat("_EmissiveValue") < maxEmissive) 
 				{
-                    print("3");
+                 
                     currentEmissive += glowSpeed;
 					rend.material.SetFloat("_EmissiveValue", currentEmissive);
 					yield return new WaitForEndOfFrame();
