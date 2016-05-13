@@ -30,6 +30,8 @@ public class Movement : MonoBehaviour {
 	void Update () {
         rigid.velocity = new Vector3(0,rigid.velocity.y,0);
 
+        
+
         float stickX = XInput.instance.getLeftXStick(playerID);
         float stickY = XInput.instance.getLeftYStick(playerID);
         if (Input.GetKey(KeyCode.Z))
