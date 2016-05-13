@@ -24,21 +24,6 @@ public class GameManager : MonoBehaviour {
         }
         
     }
-
-    void OnLevelWasLoaded(int level)
-    {
-        if (level==3||level==4)
-        {
-            if (isVictory)
-            {
-                GameObject.Find("Title").GetComponent<Text>().text = "Victory";
-            }
-            else
-            {
-                GameObject.Find("Title").GetComponent<Text>().text = "Defeat";
-            }
-            
-        }
-    }
+    
 	
 }
