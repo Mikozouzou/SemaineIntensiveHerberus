@@ -6,7 +6,7 @@ public class MenuManager : MonoBehaviour {
     
     public void retry()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main");
     }
 
     public void quit()
@@ -16,6 +16,6 @@ public class MenuManager : MonoBehaviour {
 
     public void credit()
     {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene("Credits");
     }
 }
