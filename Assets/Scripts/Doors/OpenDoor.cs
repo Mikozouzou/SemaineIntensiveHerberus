@@ -39,7 +39,7 @@ public class OpenDoor : MonoBehaviour
         if (other.GetComponent<Collider>().gameObject.tag == "LeverDoor")
         {
             
-            if (XInput.instance.getTriggerRight(playerID) > 0.8f)
+            if (XInput.instance.getTriggerRight(playerID) > 0.8f|| (Input.GetKey(KeyCode.Space)&&playerID==1))
 			//if (Input.GetKey(KeyCode.Space))
 			{	
                 if (canTriggerCoroutine == true)
